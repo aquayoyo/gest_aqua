@@ -1,0 +1,32 @@
+#######################################################################
+#
+# (C) Copyright 2006
+# Lionel
+# All rights reserved.
+#
+#
+# Application gestion_aquarium pour Olinixino
+#
+#
+# $Id: Makefile,v 1.1 2000/01/14 16:28:49 wd Exp $
+#
+#######################################################################
+
+BOARD=OLINUXINO
+#GDB = -g -DDEBUG
+GDB =
+
+TOOLDIR=/usr
+PREFIX=
+
+TOOLPREFIX=$(TOOLDIR)/bin/$(PREFIX)
+
+TOOLINC=${TOOLDIR}/include
+
+CC=$(TOOLPREFIX)gcc
+CPP=$(TOOLPREFIX)g++
+LD=$(TOOLPREFIX)ld
+AR=$(TOOLPREFIX)ar
+
+LDARCH= 
+#-march=armv5

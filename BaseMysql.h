@@ -9,8 +9,11 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-using namespace std;
+#include <string>
+#include "./mysql/cppconn/connection.h"
 
+using namespace std;
+using namespace sql;
 
 class CBaseMysql : public Connection  
 {
