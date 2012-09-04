@@ -12,16 +12,28 @@
 #
 #######################################################################
 
+ifeq ($(BOARD),"")
 BOARD=OLINUXINO
+endif
+
 #GDB = -g -DDEBUG
 GDB =
 
+DATE_VERSION=$(shell date '+%y%m%d')
+VERSION=1.01_$(DATE_VERSION)
+
+
+ifeq ($(BOARD),PC)
 TOOLDIR=/usr
 PREFIX=
-
 TOOLPREFIX=$(TOOLDIR)/bin/$(PREFIX)
+else
+TOOLDIR= /home/lionel/x-tools/arm-unknown-linux-gnueabi/
+PREFIX=arm-unknown-linux-gnueabi-
+TOOLPREFIX=$(TOOLDIR)bin/$(PREFIX)
+endif
 
-TOOLINC=${TOOLDIR}/include
+TOOLINC=${TOOLDIR}include
 
 CC=$(TOOLPREFIX)gcc
 CPP=$(TOOLPREFIX)g++
