@@ -14,10 +14,19 @@ TOP = $(shell pwd)/
 CONFIG = $(TOP)/config
 include $(CONFIG)
 
-INC_DIR=-I./mysql/ -I./mysql/cppconn
+#INC_DIR=-I./mysql/ -I./mysql/cppconn -I/usr/include
+INC_DIR=-I$(TOP)sqlite3/
 
-REP_LIB = $(TOP)mysql/lib 
-UTIL_LIB= -lmysqlcppconn 
+#REP_LIB = $(TOP)mysql/lib_$(BOARD) 
+#UTIL_LIB= -lmysqlcppconn 
+
+#ifeq ($(BOARD),OLINUXINO)
+REP_LIB = $(TOP)sqlite3/.libs/
+UTIL_LIB=-lsqlite3
+#else
+#REP_LIB = /usr/lib/
+#UTIL_LIB=-lsqlite3
+#endif
 
 OPT = -O3 -s -Wall  -fivopts $(LDARCH)
 CFLAGS = $(GDB) $(OPT) $(INC_DIR) -D$(BOARD)
@@ -27,7 +36,7 @@ OBJECT = main.o
 NOMEXE = GestAqua
 
 appli: $(OBJECT) 
-	$(CPP) -Wall -L$(REP_LIB) -lpthread $(OBJECT) $(UTIL_LIB) -o $(NOMEXE)
+	$(CPP) -L$(REP_LIB) -lpthread $(UTIL_LIB) $(OBJECT) -o $(NOMEXE)
 
 .SUFFIXES: .cpp .c .o .fl .h
 
