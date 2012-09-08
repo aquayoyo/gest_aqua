@@ -24,13 +24,21 @@ VERSION=1.01_$(DATE_VERSION)
 
 
 ifeq ($(BOARD),PC)
-TOOLDIR=/usr
-PREFIX=
-TOOLPREFIX=$(TOOLDIR)/bin/$(PREFIX)
-else
+
+ifeq ($(CROSS_COMPIL),yes)
+
 TOOLDIR= /home/lionel/x-tools/arm-unknown-linux-gnueabi/
 PREFIX=arm-unknown-linux-gnueabi-
 TOOLPREFIX=$(TOOLDIR)bin/$(PREFIX)
+else
+TOOLDIR=/usr
+PREFIX=
+TOOLPREFIX=$(TOOLDIR)/bin/$(PREFIX)
+endif
+else
+TOOLDIR=/usr
+PREFIX=
+TOOLPREFIX=$(TOOLDIR)/bin/$(PREFIX)
 endif
 
 TOOLINC=${TOOLDIR}include

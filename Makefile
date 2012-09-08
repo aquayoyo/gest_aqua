@@ -20,13 +20,15 @@ INC_DIR=-I$(TOP)sqlite3/
 #REP_LIB = $(TOP)mysql/lib_$(BOARD) 
 #UTIL_LIB= -lmysqlcppconn 
 
-#ifeq ($(BOARD),OLINUXINO)
+ifeq ($(BOARD),PC)
+ifeq ($(CROSS_COMPILE),yes)
 REP_LIB = $(TOP)sqlite3/.libs/
 UTIL_LIB=-lsqlite3
+endif
 #else
 #REP_LIB = /usr/lib/
 #UTIL_LIB=-lsqlite3
-#endif
+endif
 
 OPT = -O3 -s -Wall  -fivopts $(LDARCH)
 CFLAGS = $(GDB) $(OPT) $(INC_DIR) -D$(BOARD)
