@@ -16,7 +16,7 @@ ifeq ($(BOARD),)
 BOARD=OLINUXINO
 endif
 
-#GDB = -g -DDEBUG
+GDB = -g -DDEBUG
 GDB =
 
 DATE_VERSION=$(shell date '+%y%m%d')

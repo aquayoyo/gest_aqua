@@ -1,27 +1,39 @@
 #include <stdlib.h>
-#include <iostream>
-#include <sqlite3ext.h>
+#include <stdio.h>
+#include <unistd.h>
 
+#include <iostream>
+
+#include <sqlite3.h>
 using namespace std;
-SQLITE_EXTENSION_INIT1 
 	
+	
+static int callback(void *NotUsed, int argc, char **argv, char **azColName){
+  int i;
+  for(i=0; i<argc; i++){
+    printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
+  }
+  printf("callback\n");
+  return 0;
+}
+ 
 int main(int argc, const char **argv) {		
-	sqlite3 *dBase;
+	sqlite3 *dBase=NULL;
 	int idBase=-1;
-	sqlite3_api_routines toto;
-	SQLITE_EXTENSION_INIT2 (&toto);
-	
-	if (sqlite3_api) {
-		cout << "1." << endl;
-		idBase=sqlite3_open ("/home/lionel/olinuxino/src/gest_aqua/param/AquaGest.sl3",&dBase);
-		cout << "2." << endl;
-		/*if (sqlite3_api) {
-			delete sqlite3_api;
-			sqlite3_api=NULL;
-		}*/
-	}else
-		cout << "Fail." << endl;
-	
+
+	idBase=sqlite3_open ("param/AquaGest.sl3",&dBase);
+	if (idBase==SQLITE_OK) {	
+		
+		
+		if( sqlite3_exec(dBase, "select * from Systeme", callback, NULL, NULL)!=SQLITE_OK ){
+			cout << sqlite3_errmsg(dBase);
+		}
+		sqlite3_close (dBase);
+	}else 
+		cout << sqlite3_errmsg(dBase);
+	while (1) {
+		usleep (100);
+	}
     cout << "Done." << endl;
     return EXIT_SUCCESS;
 }

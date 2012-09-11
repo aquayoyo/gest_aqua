@@ -23,22 +23,29 @@ INC_DIR=-I$(TOP)sqlite3/
 ifeq ($(BOARD),PC)
 ifeq ($(CROSS_COMPILE),yes)
 REP_LIB = $(TOP)sqlite3/.libs/
-UTIL_LIB=-lsqlite3
 endif
+UTIL_LIB=-lsqlite3
 #else
 #REP_LIB = /usr/lib/
 #UTIL_LIB=-lsqlite3
 endif
 
-OPT = -O3 -s -Wall  -fivopts $(LDARCH)
-CFLAGS = $(GDB) $(OPT) $(INC_DIR) -D$(BOARD)
-CPPFLAGS = $(GDB) $(OPT) $(INC_DIR) -D$(BOARD)
-
 OBJECT = main.o
 NOMEXE = GestAqua
 
+ifeq ($(GDB),)
+OPT = -O2 -s -Wall  -fivopts $(LDARCH)
+MAP=
+else
+OPT =
+MAP=-Wl,-Map,$(NOMEXE).map
+endif
+
+CFLAGS = $(GDB) $(OPT) $(INC_DIR) -D$(BOARD)
+CPPFLAGS = $(GDB) $(OPT) $(INC_DIR) -D$(BOARD) 
+
 appli: $(OBJECT) 
-	$(CPP) -L$(REP_LIB) -lpthread $(UTIL_LIB) $(OBJECT) -o $(NOMEXE)
+	$(CPP) $(MAP) -L$(REP_LIB) -lpthread $(UTIL_LIB) $(OBJECT) -o $(NOMEXE)
 
 .SUFFIXES: .cpp .c .o .fl .h
 
@@ -49,4 +56,4 @@ appli: $(OBJECT)
 	$(CPP) $(CPPFLAGS) $< -c
 
 clean:
-	/bin/rm -f $(NOMEXE) *.o
+	/bin/rm -f $(NOMEXE) $(NOMEXE).map *.o
