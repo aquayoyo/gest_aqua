@@ -21,14 +21,12 @@ INC_DIR=-I$(TOP)sqlite3/
 #UTIL_LIB= -lmysqlcppconn 
 
 ifeq ($(BOARD),PC)
-ifeq ($(CROSS_COMPILE),yes)
-REP_LIB = $(TOP)sqlite3/.libs/
+	ifeq ($(CROSS_COMPILE),yes)
+		REP_LIB = $(TOP)sqlite3/.libs/
+	endif
 endif
+
 UTIL_LIB=-lsqlite3
-#else
-#REP_LIB = /usr/lib/
-#UTIL_LIB=-lsqlite3
-endif
 
 OBJECT = main.o
 NOMEXE = GestAqua
