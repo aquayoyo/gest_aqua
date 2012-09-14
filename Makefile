@@ -28,7 +28,7 @@ endif
 
 UTIL_LIB=-lsqlite3
 
-OBJECT = main.o
+OBJECT = AquaGest.o
 NOMEXE = GestAqua
 
 ifeq ($(GDB),)
