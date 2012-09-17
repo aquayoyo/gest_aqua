@@ -1,0 +1,16 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 0.8.7 ] */
+
+/* [wxMaxima: input   start ] */
+wxplot2d([37.5* x +12.5,
+15*x+35,
+15/2*x+57.5,
+5*x+70,
+-5*x+130,
+-15/2*x+147.5,
+-15*x+215,
+-37.5*x+462.5],[x,0,12], [y,0,100]);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

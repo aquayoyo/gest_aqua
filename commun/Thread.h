@@ -24,7 +24,9 @@ public:
 
 	unsigned char GetInit () {return Init;};	
 	pthread_t GetThread_id () {return thread_id;};
-	int Create ();
+
+	int Create (char cWaitEnd=0);
+
 	void SetArretThread (char DemArret) {
 		pthread_mutex_lock(&mutex);
 		ArretThread=DemArret;
@@ -46,6 +48,7 @@ public:
 protected:
 	char cAutoDelete;
 private:
+	char cIsdetachstate;
 	pthread_mutex_t mutex;
 	char ArretThread;
 	// variable //

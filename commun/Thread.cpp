@@ -42,6 +42,7 @@ CThread::CThread(int detachstate){
 	//TRACE("CThread::CThread\n");
 	Init=0;
 	cAutoDelete=0;
+	cIsdetachstate=detachstate;
 	/* Initialize the POSIX threads attribute structure. */
     if (pthread_attr_init (&attr) == 0) {
 		/* The main thread never joins with the children. */
@@ -60,8 +61,10 @@ CThread::~CThread() {
 	pthread_mutex_destroy(&mutex);
 }
 
-int CThread::Create() {
+int CThread::Create(char cWaitEnd/*=0*/ ) {
 	int err=0;
+	void *ret;
+
 	/* Create a thread to handle the client. */
 	//size_t s =  1*1024*1024;
 	//pthread_attr_setstacksize(&attr,s);
@@ -72,5 +75,9 @@ int CThread::Create() {
 		fputs ("failed to create thread\n", stderr);		
 		err=-1;
 	}
+
+	if (!cIsdetachstate && cWaitEnd)
+		pthread_join (thread_id,&ret);
+
 	return err;
 }
