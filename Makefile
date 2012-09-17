@@ -15,7 +15,7 @@ CONFIG = $(TOP)/config
 include $(CONFIG)
 
 #INC_DIR=-I./mysql/ -I./mysql/cppconn -I/usr/include
-INC_DIR=-I$(TOP)sqlite3/
+INC_DIR=-I./ -I$(TOP)commun/ -I$(TOP)sqlite3/
 
 #REP_LIB = $(TOP)mysql/lib_$(BOARD) 
 #UTIL_LIB= -lmysqlcppconn 
@@ -26,9 +26,9 @@ ifeq ($(BOARD),PC)
 	endif
 endif
 
-UTIL_LIB=-lsqlite3
+UTIL_LIB=-lsqlite3 -lpthread
 
-OBJECT = AquaGest.o
+OBJECT = Thread.o MainTache.o AquaGest.o
 NOMEXE = GestAqua
 
 ifeq ($(GDB),)
@@ -43,7 +43,7 @@ CFLAGS = $(GDB) $(OPT) $(INC_DIR) -D$(BOARD)
 CPPFLAGS = $(GDB) $(OPT) $(INC_DIR) -D$(BOARD) 
 
 appli: $(OBJECT) 
-	$(CPP) $(MAP) -L$(REP_LIB) -lpthread $(UTIL_LIB) $(OBJECT) -o $(NOMEXE)
+	$(CPP) $(MAP) -L$(REP_LIB) $(UTIL_LIB) $(OBJECT) -o $(NOMEXE)
 
 .SUFFIXES: .cpp .c .o .fl .h
 
