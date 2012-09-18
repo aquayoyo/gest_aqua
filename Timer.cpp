@@ -43,7 +43,7 @@ void *CTimer::Thread (void *pThis) {
 	int ErrSelect;
 	struct timeval Tv;
 
-	if(!m_hCallBack	|| m_ulDuree_ms==0 || pThis)
+	if(!m_hCallBack	|| m_ulDuree_ms==0 || !pThis)
 		return NULL;
 
 	m_bStarted=true;
