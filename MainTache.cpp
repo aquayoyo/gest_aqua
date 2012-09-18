@@ -3,12 +3,12 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "MainTache.h"
+#include <stdio.h>
 
 #ifndef WIN32
 #include <unistd.h>
 #include <errno.h>  
 #else
-#include <stdio.h>
 #include <winsock.h>
 #endif
 
@@ -32,7 +32,7 @@ void *CMainTask::Thread(void *pParam) {
 	struct timeval Tv;
 
 	printf ("CMainTask::Thread 1\n");
-	
+	mTimer.Start (100);
 	while(!cGetArretThread()) {			
 		Tv.tv_sec	= 1;
 		Tv.tv_usec	= 0;
@@ -49,6 +49,7 @@ void *CMainTask::Thread(void *pParam) {
 		}
 	}
 
+	mTimer.Stop();
 	printf ("CMainTask::Thread 2\n");
 	return NULL;
 }

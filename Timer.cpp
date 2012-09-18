@@ -5,7 +5,6 @@
 #ifndef WIN32
 #include <unistd.h>
 #else
-#include <stdio.h>
 #include <winsock.h>
 #endif
 
@@ -41,11 +40,13 @@ void CTimer::Start(unsigned long usec, void *h_objet_attache) {
 	Create ();
 }
 void *CTimer::Thread (void *pThis) {
-	
-	if(!m_hCallBack	|| m_ulDuree_ms==0 || pThis)
-		return NULL;
 	int ErrSelect;
 	struct timeval Tv;
+
+	if(!m_hCallBack	|| m_ulDuree_ms==0 || pThis)
+		return NULL;
+
+	m_bStarted=true;
 	
 	while(!cGetArretThread()) {			
 		Tv.tv_sec	= m_ulDuree_ms/1000;
