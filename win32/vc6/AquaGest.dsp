@@ -74,7 +74,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib  pthreadVC2.lib /nologo /subsystem:console /debug /machine:I386 /pdbtype:sept /libpath:"..\..\\" /libpath:"..\..\commun\pthread"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib pthreadVC2.lib  ws2_32.lib /nologo /subsystem:console /debug /machine:I386 /pdbtype:sept /libpath:"..\..\\" /libpath:"..\..\commun\pthread"
 
 !ENDIF 
 
@@ -97,6 +97,10 @@ SOURCE=..\..\MainTache.cpp
 
 SOURCE=..\..\commun\Thread.cpp
 # End Source File
+# Begin Source File
+
+SOURCE=..\..\Timer.cpp
+# End Source File
 # End Group
 # Begin Group "Header Files"
 
@@ -108,6 +112,10 @@ SOURCE=..\..\MainTache.h
 # Begin Source File
 
 SOURCE=..\..\commun\Thread.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\Timer.h
 # End Source File
 # End Group
 # Begin Group "Resource Files"
