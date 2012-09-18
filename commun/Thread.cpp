@@ -30,8 +30,12 @@ static void *FctThread (void *thread) {
 		((CThread*)thread)->Thread (thread); // fonction thread
 		((CThread*)thread)->SetArretThread (2);
 
-		if (((CThread*)thread)->IsAutoDelete())
+		if (((CThread*)thread)->IsAutoDelete()) {		
+			if (!((CThread*)thread)->IsDetach())
+				pthread_join (((CThread*)thread)->GetThread_id(),NULL);
+				
 			delete (CThread*)thread;
+		}
 	}
 
 	pthread_exit (RetVal);
@@ -76,7 +80,7 @@ int CThread::Create(char cWaitEnd/*=0*/ ) {
 		err=-1;
 	}
 
-	if (!cIsdetachstate && cWaitEnd)
+	if (!IsAutoDelete () && !cIsdetachstate && cWaitEnd)
 		pthread_join (thread_id,&ret);
 
 	return err;

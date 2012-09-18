@@ -44,6 +44,7 @@ public:
 	virtual void *Thread(void *)=0;
 
 	char IsAutoDelete() {return cAutoDelete;};
+	char IsDetach() {return cIsdetachstate;};
 	void SetAutoDelete(char cDelete) {cAutoDelete=cDelete;};
 protected:
 	char cAutoDelete;
