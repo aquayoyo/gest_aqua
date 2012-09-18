@@ -30,7 +30,7 @@ UTIL_LIB=-lsqlite3 -lpthread
 
 OBJECT = $(TOP)commun/Thread.o MainTache.o Timer.o AquaGest.o
 NOMEXE = GestAqua
-
+DESTDIR= debug/
 ifeq ($(GDB),)
 OPT = -O2 -s -Wall  -fivopts $(LDARCH)
 MAP=
@@ -51,7 +51,7 @@ appli: $(OBJECT)
 	$(CC) $(CFLAGS) $< -c
 
 .cpp.o:
-	$(CPP) $(CPPFLAGS) $< -c
+	$(CPP) -c $(CPPFLAGS) -o "$@" "$<"
 
 clean:
-	/bin/rm -f $(NOMEXE) $(NOMEXE).map *.o
+	/bin/rm -f $(NOMEXE) $(NOMEXE).map $(OBJECT)
