@@ -48,8 +48,8 @@ appli: $(OBJECT)
 .SUFFIXES: .cpp .c .o .fl .h
 
 .c.o:
-	$(CC) $(CFLAGS) $< -c
-
+	$(CC) -c $(CFLAGS) -o "$@" "$<"
+	
 .cpp.o:
 	$(CPP) -c $(CPPFLAGS) -o "$@" "$<"
 

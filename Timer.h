@@ -1,5 +1,13 @@
 #include <Thread.h>
+#ifndef WIN32
+#include <stdint.h>
+#else
+#include <windows.h>
 
+#ifndef uint64_t
+#define uint64_t ULONGLONG 
+#endif
+#endif //WIN32
 // Rappelle une callback à intervalle de temps régulier
 // dans un thread à part
 class CTimer : public CThread {
@@ -10,9 +18,9 @@ public:
 	virtual ~CTimer();
 
 	inline const bool IsStarted() const { return m_bStarted; };
-	inline const unsigned long GetDuree() const { return m_ulDuree_ms;};
+	inline const uint64_t ui64GetDuree() const { return ui64TpsUsec;};
 	
-	void Start(unsigned long usec=0, void *h_objet_attache=NULL);
+	void Start(uint64_t ui64_usec=0, void *h_objet_attache=NULL);
 	void Stop();
 
 	void SetCallback(pFctCallback callback);
@@ -21,8 +29,9 @@ public:
 	
 	void *Thread(void *pThis);
 private: // Data
+	int iIdPipe [2];
 	bool m_bStarted;
-	unsigned long m_ulDuree_ms;
+	uint64_t ui64TpsUsec;
 	pFctCallback m_hCallBack;
 	void * m_hObjetAttache;
 private: // Fonction

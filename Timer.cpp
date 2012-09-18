@@ -19,22 +19,24 @@ CTimer::~CTimer() {
 }
 
 static void CallbackCTimer(void *arg) {
-	printf("%s\n", "CallbackCTimer");
+	printf("%s\n", "CallbackCTimer 1");
 }
 
 // Appelable uniquement à partir des constructeurs
 void CTimer::Init() {
 	m_bStarted = false;
-	m_ulDuree_ms = 0;
+	ui64TpsUsec  = 0;
 	m_hCallBack = CallbackCTimer;
 	m_hObjetAttache = NULL;
+	iIdPipe[0]=-1;
+	iIdPipe[1]=-1;
 }
 
-void CTimer::Start(unsigned long usec, void *h_objet_attache) {
-	if (m_bStarted || usec==0) {		
+void CTimer::Start(uint64_t ui64_usec, void *h_objet_attache) {
+	if (m_bStarted || ui64_usec==0) {		
 		return;
 	}
-	m_ulDuree_ms = usec;
+	ui64TpsUsec = ui64_usec;
 	m_hObjetAttache = h_objet_attache;
 	// Démarrge du thread
 	Create ();
@@ -43,24 +45,38 @@ void *CTimer::Thread (void *pThis) {
 	int ErrSelect;
 	struct timeval Tv;
 
-	if(!m_hCallBack	|| m_ulDuree_ms==0 || !pThis)
+	if(!m_hCallBack	|| ui64TpsUsec==0 || !pThis)
 		return NULL;
 
 	m_bStarted=true;
-	
-	while(!cGetArretThread()) {			
-		Tv.tv_sec	= m_ulDuree_ms/1000;
-		Tv.tv_usec	= (m_ulDuree_ms%1000)*1000;
-		
-		ErrSelect = select(0,NULL,NULL,NULL,&Tv);
-		if (ErrSelect > 0) {
-			break;
-		}else if (ErrSelect == 0) {	// time out
-			if (!cGetArretThread()) {
-				m_hCallBack(m_hObjetAttache);
+	if (pipe (iIdPipe)!=-1) {
+		int n=0;
+		fd_set rfds;
+
+		FD_ZERO(&rfds);
+
+		while(!cGetArretThread()) {			
+
+			FD_SET(iIdPipe[0], &rfds);		
+
+			Tv.tv_sec	= ui64TpsUsec /1000000;
+			Tv.tv_usec	= (ui64TpsUsec %1000000);
+
+			n=iIdPipe[0];
+			n++;
+
+			ErrSelect = select(n,&rfds,NULL,NULL,&Tv);
+			if (ErrSelect > 0) {
+				if (FD_ISSET(iIdPipe[0], &rfds)) {
+					break;
+				}
+			}else if (ErrSelect == 0) {	// time out
+				if (!cGetArretThread()) {
+					m_hCallBack(m_hObjetAttache);
+				}
+			}else if(errno != EINTR) {				
+				break;
 			}
-		}else if(errno != EINTR) {				
-			break;
 		}
 	}
 	return NULL;

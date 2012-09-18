@@ -32,7 +32,7 @@ void *CMainTask::Thread(void *pParam) {
 	struct timeval Tv;
 
 	printf ("CMainTask::Thread 1\n");
-	mTimer.Start (100);
+	mTimer.Start (100*1000);
 	while(!cGetArretThread()) {			
 		Tv.tv_sec	= 1;
 		Tv.tv_usec	= 0;
