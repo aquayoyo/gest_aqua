@@ -6,6 +6,7 @@
 
 #ifndef WIN32
 #include <unistd.h>
+#include <errno.h>  
 #else
 #include <stdio.h>
 #include <winsock.h>

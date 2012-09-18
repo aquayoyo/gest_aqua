@@ -1,4 +1,4 @@
-#include <thread.h>
+#include <Thread.h>
 
 // Rappelle une callback à intervalle de temps régulier
 // dans un thread à part

@@ -1,4 +1,7 @@
 #include "Timer.h"
+#include <stdio.h>
+#include <errno.h>
+
 #ifndef WIN32
 #include <unistd.h>
 #else
