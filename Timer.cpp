@@ -1,10 +1,11 @@
 #include "Timer.h"
 #include <stdio.h>
 #include <errno.h>
-#include <io.h>
+
 #ifndef WIN32
 #include <unistd.h>
 #else
+#include <io.h>
 #include <winsock.h>
 
 int pipe (int iIdPipe[2]);

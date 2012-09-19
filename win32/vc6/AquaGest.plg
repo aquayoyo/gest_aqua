@@ -6,31 +6,29 @@
 --------------------Configuration: AquaGest - Win32 Debug--------------------
 </h3>
 <h3>Command Lines</h3>
-Creating temporary file "C:\DOCUME~1\adminpc\LOCALS~1\Temp\RSP2FE.tmp" with contents
+Creating temporary file "C:\DOCUME~1\adminpc\LOCALS~1\Temp\RSP309.tmp" with contents
 [
 /nologo /MLd /W3 /Gm /GX /ZI /Od /I "..\..\\" /I "..\..\commun\pthread\include" /I "..\..\commun\\" /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /FR"Debug/" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
-"C:\Documents and Settings\adminpc\Mes documents\projet c++\sources\gest_aqua\MainTache.cpp"
 "C:\Documents and Settings\adminpc\Mes documents\projet c++\sources\gest_aqua\Timer.cpp"
 ]
-Creating command line "cl.exe @C:\DOCUME~1\adminpc\LOCALS~1\Temp\RSP2FE.tmp" 
-Creating temporary file "C:\DOCUME~1\adminpc\LOCALS~1\Temp\RSP2FF.tmp" with contents
+Creating command line "cl.exe @C:\DOCUME~1\adminpc\LOCALS~1\Temp\RSP309.tmp" 
+Creating temporary file "C:\DOCUME~1\adminpc\LOCALS~1\Temp\RSP30A.tmp" with contents
 [
 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib pthreadVC2.lib ws2_32.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/AquaGest.pdb" /debug /machine:I386 /out:"Debug/AquaGest.exe" /pdbtype:sept /libpath:"..\..\\" /libpath:"..\..\commun\pthread" 
 ".\Debug\AquaGest.obj"
 ".\Debug\MainTache.obj"
 ".\Debug\Thread.obj"
 ".\Debug\Timer.obj"
+".\Debug\PwmGpio.obj"
 ]
-Creating command line "link.exe @C:\DOCUME~1\adminpc\LOCALS~1\Temp\RSP2FF.tmp"
+Creating command line "link.exe @C:\DOCUME~1\adminpc\LOCALS~1\Temp\RSP30A.tmp"
 <h3>Output Window</h3>
 Compiling...
-MainTache.cpp
 Timer.cpp
-c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\timer.cpp(87) : warning C4244: '=' : conversion from 'unsigned __int64' to 'long', possible loss of data
 c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\timer.cpp(88) : warning C4244: '=' : conversion from 'unsigned __int64' to 'long', possible loss of data
-Generating Code...
+c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\timer.cpp(89) : warning C4244: '=' : conversion from 'unsigned __int64' to 'long', possible loss of data
 Linking...
-Creating command line "bscmake.exe /nologo /o"Debug/AquaGest.bsc"  ".\Debug\AquaGest.sbr" ".\Debug\MainTache.sbr" ".\Debug\Thread.sbr" ".\Debug\Timer.sbr""
+Creating command line "bscmake.exe /nologo /o"Debug/AquaGest.bsc"  ".\Debug\AquaGest.sbr" ".\Debug\MainTache.sbr" ".\Debug\Thread.sbr" ".\Debug\Timer.sbr" ".\Debug\PwmGpio.sbr""
 Creating browse info file...
 <h3>Output Window</h3>
 
