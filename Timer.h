@@ -1,3 +1,6 @@
+#if !defined(TIMER_H)
+#define TIMER_H
+
 #include <Thread.h>
 #ifndef WIN32
 #include <stdint.h>
@@ -44,3 +47,4 @@ private: // Fonction
 	void Init();
 };
 
+#endif //TIMER_H

@@ -28,7 +28,7 @@ endif
 
 UTIL_LIB=-lsqlite3 -lpthread
 
-OBJECT = $(TOP)commun/Thread.o MainTache.o Timer.o AquaGest.o
+OBJECT = $(TOP)commun/Thread.o MainTache.o Timer.o PwmGpio.o AquaGest.o
 NOMEXE = GestAqua
 DESTDIR= debug/
 ifeq ($(GDB),)

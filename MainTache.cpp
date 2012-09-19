@@ -33,7 +33,8 @@ void *CMainTask::Thread(void *pParam) {
 
 	int cpt=0;
 	printf ("CMainTask::Thread 1\n");
-	mTimer.Start (100*1000,NULL,TIME_PERIODIC);
+	m_PwmGpio.iInit(0,10,99);
+	m_PwmGpio.iStart ();
 	while(!cGetArretThread()) {			
 		Tv.tv_sec	= 1;
 		Tv.tv_usec	= 0;
@@ -53,7 +54,7 @@ void *CMainTask::Thread(void *pParam) {
 		}
 	}
 
-	mTimer.Stop();
+	m_PwmGpio.iStop();
 	printf ("CMainTask::Thread 2\n");
 	return NULL;
 }

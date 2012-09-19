@@ -7,7 +7,7 @@
 
 #include <stdio.h>
 #include <Thread.h>
-#include <Timer.h>
+#include <PwmGpio.h>
 
 class CMainTask : public CThread 
 {
@@ -16,7 +16,7 @@ public:
 	virtual ~CMainTask();
 	void *Thread(void *pParam);
 
-	CTimer mTimer;
+	CPwmGpio m_PwmGpio;
 };
 
 #endif // !defined(AFX_MAINTACHE_H__890EC1EE_CAB3_4102_931E_9FD26CBBA5AD__INCLUDED_)

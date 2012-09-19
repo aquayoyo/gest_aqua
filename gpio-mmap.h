@@ -1,3 +1,5 @@
+#if !defined(GPIO_MMAP_H)
+#define GPIO_MMAP_H
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -19,7 +21,7 @@
 
 int *gpio_mmap = 0;
 
-int *gpio_map() {
+int *gpio_map1() {
 	int fd;
 	if (gpio_mmap != 0) return NULL;
 	fd = open("/dev/mem", O_RDWR);
@@ -28,7 +30,7 @@ int *gpio_map() {
 		fd = 0;
 	}
 #ifdef OLINUXINO
-	gpio_mmap = mmap(0, 0xfff, PROT_READ|PROT_WRITE, MAP_SHARED, fd, GPIO_BASE);
+	gpio_mmap = (int*)mmap(0, 0xfff, PROT_READ|PROT_WRITE, MAP_SHARED, fd, GPIO_BASE);
 #else
 	gpio_mmap =(int*)0xffffffff;
 #endif
@@ -59,3 +61,4 @@ void gpio_input(int bank, int pin) {
 	gpio_mmap[0x1C2 + (bank*4)] = 1 << pin;
 }
 
+#endif //GPIO_MMAP_H

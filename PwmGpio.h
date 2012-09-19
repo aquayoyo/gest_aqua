@@ -16,17 +16,21 @@
 #define NANO_SEC 1000000
 static void *CallbackTimerPwmGpio (void *arg);
 
-class CPwmGpio : public CTimer  
+class CPwmGpio
 {
 public:
 	CPwmGpio(unsigned char ucNumGpio=0,unsigned int uiFreq=1000, unsigned char ucRapport=50);
 	virtual ~CPwmGpio();
 
 	int GestionPwm();
-private : //data
-	unsigned char ucEtat;
-
+	
 	int iInit (unsigned char ucNumGpio=0,unsigned int uiFreq=1000, unsigned char ucRapport=50);
+	int iStart ();
+	int iStop ();
+	
+private : //data
+	CTimer  m_TimerPwm;
+	unsigned char ucEtat;
 
 	unsigned char ucGpio;
 	unsigned int uiFrequence;
