@@ -38,8 +38,9 @@ CTimer::~CTimer() {
 	}
 }
 
-static void CallbackCTimer(void *arg) {
+static void *CallbackCTimer(void *arg) {
 	printf("%s\n", "CallbackCTimer 1");
+	return NULL;
 }
 
 // Appelable uniquement à partir des constructeurs

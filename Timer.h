@@ -15,7 +15,7 @@
 // Rappelle une callback à intervalle de temps régulier
 // dans un thread à part
 class CTimer : public CThread {
-	typedef void(*pFctCallback)(void*);
+	typedef void* (*pFctCallback)(void*);
 
 public:
 	CTimer();

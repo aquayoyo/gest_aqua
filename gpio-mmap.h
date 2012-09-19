@@ -1,9 +1,15 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+
+#ifndef WIN32
 #include <sys/mman.h>
 #include <fcntl.h>
 #include <unistd.h>
+#else
+#include <fcntl.h>
+#include <io.h>
+#endif
 
 #define GPIO_BASE 0x80018000
 #define GPIO_WRITE_PIN(gpio,value) GPIO_WRITE((gpio)>>5, (gpio)&31, value)
@@ -15,14 +21,17 @@ int *gpio_mmap = 0;
 
 int *gpio_map() {
 	int fd;
-	if (gpio_mmap != 0) return;
+	if (gpio_mmap != 0) return NULL;
 	fd = open("/dev/mem", O_RDWR);
 	if( fd < 0 ) {
 		perror("Unable to open /dev/mem");
 		fd = 0;
 	}
-
+#ifdef OLINUXINO
 	gpio_mmap = mmap(0, 0xfff, PROT_READ|PROT_WRITE, MAP_SHARED, fd, GPIO_BASE);
+#else
+	gpio_mmap =(int*)0xffffffff;
+#endif
 	if( -1 == (int)gpio_mmap) {
 		perror("Unable to mmap file");
 		gpio_mmap = 0;
@@ -30,6 +39,8 @@ int *gpio_map() {
 	if( -1 == close(fd))
 		perror("Couldn't close file");
 	fd=0;
+
+	return gpio_mmap;
 }
 
 int gpio_rd(long offset) {
