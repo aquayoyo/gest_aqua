@@ -46,6 +46,14 @@ public:
 	char IsAutoDelete() {return cAutoDelete;};
 	char IsDetach() {return cIsdetachstate;};
 	void SetAutoDelete(char cDelete) {cAutoDelete=cDelete;};
+
+	void LockMutex () {
+		pthread_mutex_lock(&mutex);
+	}
+
+	void UnLockMutex () {
+		pthread_mutex_unlock(&mutex);
+	}
 protected:
 	char cAutoDelete;
 private:

@@ -31,8 +31,9 @@ void *CMainTask::Thread(void *pParam) {
 	int ErrSelect;
 	struct timeval Tv;
 
+	int cpt=0;
 	printf ("CMainTask::Thread 1\n");
-	mTimer.Start (100*1000);
+	mTimer.Start (100*1000,NULL,TIME_PERIODIC);
 	while(!cGetArretThread()) {			
 		Tv.tv_sec	= 1;
 		Tv.tv_usec	= 0;
@@ -43,6 +44,9 @@ void *CMainTask::Thread(void *pParam) {
 			break;
 		}else if (ErrSelect == 0) {	// time out			
 			printf ("CMainTask::Thread 1-2\n");
+			cpt++;
+			if (cpt>=30)
+				break;
 		}else if(errno != EINTR) {		
 			printf ("CMainTask::Thread 1-3\n");
 			break;
