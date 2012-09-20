@@ -1,9 +1,8 @@
 // PwmGpio.h: interface for the CPwmGpio class.
 //
 //////////////////////////////////////////////////////////////////////
-
-#if !defined(AFX_PWMGPIO_H__FAC8CE87_20AE_4FD1_B5A0_FF5F6EB41629__INCLUDED_)
-#define AFX_PWMGPIO_H__FAC8CE87_20AE_4FD1_B5A0_FF5F6EB41629__INCLUDED_
+#ifndef PWMGPIO_H
+#define PWMGPIO_H
 
 #if _MSC_VER > 1000
 #pragma once
@@ -11,8 +10,8 @@
 
 #include "Timer.h"
 #include "gpio-mmap.h"
-
-#define KHz 1000
+#define HZ	1
+#define KHz 1000 * HZ
 #define NANO_SEC 1000000
 static void *CallbackTimerPwmGpio (void *arg);
 

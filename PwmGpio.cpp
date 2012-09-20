@@ -4,6 +4,8 @@
 
 #include "PwmGpio.h"
 #include <stdio.h>
+extern int *gpio_mmap;
+
 static void *CallbackTimerPwmGpio (void *arg) {
 	int iRetour=0;
 	if (arg) {
@@ -28,7 +30,9 @@ CPwmGpio::~CPwmGpio()
 
 int CPwmGpio::iInit (unsigned char ucNumGpio/*=0*/,unsigned int uiFreq/*=1000*/, unsigned char ucRapport/*=50*/) {
 	int iErr=0;
+	
 	ucGpio = ucNumGpio;
+	gpio_output( 2,1);
 	
 	if (uiFreq>0 && uiFreq<=10 * KHz)
 		uiFrequence=uiFreq;
@@ -47,6 +51,7 @@ int CPwmGpio::iInit (unsigned char ucNumGpio/*=0*/,unsigned int uiFreq/*=1000*/,
 	ui64_usecEtatBas=ui64_usec_Period-ui64_usecEtatHaut;
 
 	ucEtat=0;
+	GPIO_WRITE_PIN( 65,ucEtat);
 	
 	return iErr;
 }
@@ -70,6 +75,7 @@ int CPwmGpio::iStop () {
 int CPwmGpio::GestionPwm() {
 	int iRetour=0;
 	ucEtat=ucEtat?0:1;
+	GPIO_WRITE_PIN( 65,ucEtat);
 	printf ("ucEtat=%d\n",ucEtat);
 	return iRetour;
 }

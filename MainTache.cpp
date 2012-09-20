@@ -19,6 +19,7 @@
 CMainTask::CMainTask() : CThread (PTHREAD_CREATE_JOINABLE) {
 
 	printf ("CMainTask\n");
+	gpio_map ();
 }
 
 CMainTask::~CMainTask()
@@ -33,7 +34,7 @@ void *CMainTask::Thread(void *pParam) {
 
 	int cpt=0;
 	printf ("CMainTask::Thread 1\n");
-	m_PwmGpio.iInit(0,10,99);
+	m_PwmGpio.iInit(0,10*HZ,99);
 	m_PwmGpio.iStart ();
 	while(!cGetArretThread()) {			
 		Tv.tv_sec	= 1;

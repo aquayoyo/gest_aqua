@@ -1,13 +1,13 @@
 #######################################################################
 #
-# (C) Copyright 2003
-# Stim
+# (C) Copyright 2012
+# lionel
 # All rights reserved.
 #
 #
-#  captimage 
+#  olinuxino_gest_aqua 
 #
-# $Id: Makefile,v 1.1 2003/11/19 16:28:49 wd Exp $
+# $Id: Makefile
 #
 #######################################################################
 TOP = $(shell pwd)/
@@ -28,7 +28,7 @@ endif
 
 UTIL_LIB=-lsqlite3 -lpthread
 
-OBJECT = $(TOP)commun/Thread.o MainTache.o Timer.o PwmGpio.o AquaGest.o
+OBJECT = $(TOP)commun/Thread.o MainTache.o Timer.o gpio-mmap.o PwmGpio.o AquaGest.o
 NOMEXE = GestAqua
 DESTDIR= debug/
 ifeq ($(GDB),)

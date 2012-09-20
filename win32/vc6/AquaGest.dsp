@@ -91,6 +91,10 @@ SOURCE=..\..\AquaGest.cpp
 # End Source File
 # Begin Source File
 
+SOURCE="..\..\gpio-mmap.cpp"
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\MainTache.cpp
 # End Source File
 # Begin Source File
@@ -109,6 +113,10 @@ SOURCE=..\..\Timer.cpp
 # Begin Group "Header Files"
 
 # PROP Default_Filter "h;hpp;hxx;hm;inl"
+# Begin Source File
+
+SOURCE="..\..\gpio-mmap.h"
+# End Source File
 # Begin Source File
 
 SOURCE=..\..\MainTache.h
