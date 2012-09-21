@@ -20,15 +20,11 @@ INC_DIR=-I./ -I$(TOP)commun/ -I$(TOP)sqlite3/
 #REP_LIB = $(TOP)mysql/lib_$(BOARD) 
 #UTIL_LIB= -lmysqlcppconn 
 
-ifeq ($(BOARD),PC)
-	ifeq ($(CROSS_COMPILE),yes)
-		REP_LIB = $(TOP)sqlite3/.libs/
-	endif
-endif
-
 UTIL_LIB=-lsqlite3 -lpthread
 
-OBJECT = $(TOP)commun/Thread.o MainTache.o Timer.o gpio-mmap.o PwmGpio.o AquaGest.o
+OBJECT = $(TOP)commun/Thread.o $(TOP)commun/general.o \
+ MainTache.o Timer.o gpio-mmap.o PwmGpio.o SequenceurTache.o AquaGest.o
+ 
 NOMEXE = GestAqua
 DESTDIR= debug/
 ifeq ($(GDB),)
@@ -42,6 +38,13 @@ endif
 CFLAGS = $(GDB) $(OPT) $(INC_DIR) -D$(BOARD)
 CPPFLAGS = $(GDB) $(OPT) $(INC_DIR) -D$(BOARD) 
 
+ifeq ($(BOARD),PC)
+	ifeq ($(CROSS_COMPILE),yes)
+		REP_LIB = $(TOP)sqlite3/.libs/
+		$(CFLAGS)+= -DOLINUXINO
+		$(CPPFLAGS)+= -DOLINUXINO
+	endif
+endif
 appli: $(OBJECT) 
 	$(CPP) $(MAP) -L$(REP_LIB) $(UTIL_LIB) $(OBJECT) -o $(NOMEXE)
 

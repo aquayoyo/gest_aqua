@@ -17,9 +17,7 @@
 //////////////////////////////////////////////////////////////////////
 
 CMainTask::CMainTask() : CThread (PTHREAD_CREATE_JOINABLE) {
-
 	printf ("CMainTask\n");
-	gpio_map ();
 }
 
 CMainTask::~CMainTask()

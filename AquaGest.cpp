@@ -5,6 +5,8 @@
 
 int main(int argc, char* argv[])
 {
+	gpio_map ();
+	
 	CMainTask m_MainTask;
 
 	printf ("main 1\n");

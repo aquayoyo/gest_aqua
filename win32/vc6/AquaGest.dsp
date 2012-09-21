@@ -91,6 +91,10 @@ SOURCE=..\..\AquaGest.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\commun\General.cpp
+# End Source File
+# Begin Source File
+
 SOURCE="..\..\gpio-mmap.cpp"
 # End Source File
 # Begin Source File
@@ -100,6 +104,10 @@ SOURCE=..\..\MainTache.cpp
 # Begin Source File
 
 SOURCE=..\..\PwmGpio.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\SequenceurTache.cpp
 # End Source File
 # Begin Source File
 
@@ -115,6 +123,10 @@ SOURCE=..\..\Timer.cpp
 # PROP Default_Filter "h;hpp;hxx;hm;inl"
 # Begin Source File
 
+SOURCE=..\..\commun\General.h
+# End Source File
+# Begin Source File
+
 SOURCE="..\..\gpio-mmap.h"
 # End Source File
 # Begin Source File
@@ -124,6 +136,10 @@ SOURCE=..\..\MainTache.h
 # Begin Source File
 
 SOURCE=..\..\PwmGpio.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\SequenceurTache.h
 # End Source File
 # Begin Source File
 

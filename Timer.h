@@ -1,6 +1,6 @@
 #ifndef TIMER_H
 #define TIMER_H
-
+#include <General.h>
 #include <Thread.h>
 #ifndef WIN32
 #include <stdint.h>

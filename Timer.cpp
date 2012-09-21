@@ -7,15 +7,6 @@
 #else
 #include <io.h>
 #include <winsock.h>
-
-int pipe (int iIdPipe[2]);
-
-int pipe (int iIdPipe[2]) {
-	iIdPipe[0]=0;
-	iIdPipe[1]=0;
-	return 0;
-}
-
 #endif
 
 // h_objet_attache est le pointeur qui sera passé en paramètre lors des appels de la callback
