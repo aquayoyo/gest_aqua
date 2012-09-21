@@ -99,7 +99,23 @@ SOURCE="..\..\gpio-mmap.cpp"
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\Lune.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\MainTache.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\Profil.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\ProfilJour.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\ProfilNuit.cpp
 # End Source File
 # Begin Source File
 
@@ -108,6 +124,10 @@ SOURCE=..\..\PwmGpio.cpp
 # Begin Source File
 
 SOURCE=..\..\SequenceurTache.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\Soleil.cpp
 # End Source File
 # Begin Source File
 
@@ -131,7 +151,23 @@ SOURCE="..\..\gpio-mmap.h"
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\Lune.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\MainTache.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\Profil.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\ProfilJour.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\ProfilNuit.h
 # End Source File
 # Begin Source File
 
@@ -140,6 +176,10 @@ SOURCE=..\..\PwmGpio.h
 # Begin Source File
 
 SOURCE=..\..\SequenceurTache.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\Soleil.h
 # End Source File
 # Begin Source File
 

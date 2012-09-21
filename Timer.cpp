@@ -66,13 +66,13 @@ void *CTimer::Thread (void *pThis) {
 	if (pipe (iIdPipe)!=-1) {
 		int n=0;
 		fd_set rfds;
-
+		
 		FD_ZERO(&rfds);
-
+		
 		m_bStarted=true;
 		n=iIdPipe[0];
 		n++;
-
+		
 		while(!cGetArretThread()) {
 			FD_SET(iIdPipe[0], &rfds);		
 
