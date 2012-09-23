@@ -9,7 +9,7 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include "COMMUN\Thread.h"
+#include <Thread.h>
 
 class CProfil : public CThread  
 {

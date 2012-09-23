@@ -22,7 +22,8 @@ INC_DIR=-I./ -I$(TOP)commun/ -I$(TOP)sqlite3/
 
 UTIL_LIB=-lsqlite3 -lpthread
 
-OBJECT = $(TOP)commun/Thread.o $(TOP)commun/general.o \
+OBJECT = Profil.o Lune.o Soleil.o ProfilNuit.o ProfilJour.o \
+$(TOP)commun/Thread.o $(TOP)commun/General.o \
  MainTache.o Timer.o gpio-mmap.o PwmGpio.o SequenceurTache.o AquaGest.o
  
 NOMEXE = GestAqua

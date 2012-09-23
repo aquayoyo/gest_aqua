@@ -6,4 +6,6 @@ int pipe (int iIdPipe[2]) {
 	iIdPipe[1]=0;
 	return 0;
 }
+#else
+int nop=0;
 #endif

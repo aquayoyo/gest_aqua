@@ -14,12 +14,20 @@
 #endif
 
 #define GPIO_BASE 0x80018000
-
+#ifdef OLINUXINO
 #define GPIO_WRITE_PIN(gpio,value) GPIO_WRITE((gpio)>>5, (gpio)&31, value)
 #define GPIO_WRITE(bank,pin,value) (gpio_mmap[0x140+((bank)<<2)+((value)?1:2)] = 1<<(pin))
 
 #define GPIO_READ_PIN(gpio) GPIO_READ((gpio)>>5, (gpio)&31)
 #define GPIO_READ(bank,pin) ((gpio_mmap[0x180+((bank)<<2)] >> (pin)) & 1)
+#else
+
+#define GPIO_WRITE_PIN(gpio,value) void ();
+#define GPIO_WRITE(bank,pin,value) void ();
+
+#define GPIO_READ_PIN(gpio) void ();
+#define GPIO_READ(bank,pin) void ();
+#endif
 
 int *gpio_map();
 int gpio_rd(long offset);
