@@ -30,11 +30,16 @@ void *CSequenceurTache::Thread (void *pThis) {
 			ErrSelect = select(n,&rfds,NULL,NULL,&Tv);
 			if (ErrSelect > 0) {
 				if (FD_ISSET(iIdPipe[0], &rfds)) {
-					printf ("CTimer::Thread 2\n");
+					printf ("CSequenceurTache::Thread 2\n");
 					break;
 				}
 			}else if (ErrSelect == 0) {	// time out
-				if (!cGetArretThread()) {					
+				if (!cGetArretThread()) {
+					time_t tCourant=time (NULL);
+					if (mProfilJour.tGetDebut ()>=tCourant && mProfilJour.IsStarted())
+						mProfilJour.Start ();
+
+					
 				}
 			}else if(errno != EINTR) {				
 				break;

@@ -46,6 +46,7 @@ CThread::CThread(int detachstate){
 	//TRACE("CThread::CThread\n");
 	Init=0;
 	cAutoDelete=0;
+	m_bStarted = false;
 	cIsdetachstate=detachstate;
 	/* Initialize the POSIX threads attribute structure. */
     if (pthread_attr_init (&attr) == 0) {

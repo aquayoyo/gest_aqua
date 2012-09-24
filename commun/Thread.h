@@ -26,6 +26,8 @@ public:
 	unsigned char GetInit () {return Init;};	
 	pthread_t GetThread_id () {return thread_id;};
 
+	inline const bool IsStarted() const { return m_bStarted; };
+
 	int Create (char cWaitEnd=0);
 
 	void SetArretThread (char DemArret) {
@@ -55,8 +57,12 @@ public:
 	void UnLockMutex () {
 		pthread_mutex_unlock(&mutex);
 	}
+
+	int iIdPipe [2];
+
 protected:
 	char cAutoDelete;
+	bool m_bStarted;
 private:
 	char cIsdetachstate;
 	pthread_mutex_t mutex;

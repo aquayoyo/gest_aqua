@@ -9,12 +9,15 @@
 #pragma once
 #endif // _MSC_VER > 1000
 #include "Profil.h"
+#include <General.h>
 
 class CProfilNuit : public CProfil  
 {
 public:
 	CProfilNuit();
 	virtual ~CProfilNuit();
+
+	void *Thread(void *pThis);
 
 };
 

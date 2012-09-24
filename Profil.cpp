@@ -17,3 +17,11 @@ CProfil::~CProfil()
 {
 
 }
+
+void CProfil::Start() {
+	if (m_bStarted || tDuree==0) {		
+		return;
+	}
+	
+	Create ();
+}

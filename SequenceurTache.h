@@ -11,6 +11,8 @@ using namespace std;
 #include <Timer.h>
 #include <Thread.h>
 
+#include <ProfilJour.h>
+#include <ProfilNuit.h>
 class CSequenceurTache : public CThread {
 public:
 	CSequenceurTache ();
@@ -18,9 +20,11 @@ public:
 	
 	void *Thread (void *pThis);
 private: // Data
-	int iIdPipe [2];
 	
 	list <CTimer *> ListeLanceurTache;
+
+	CProfilJour mProfilJour;
+	CProfilNuit mProfilNuit;
 };
 
 #endif

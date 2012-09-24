@@ -35,8 +35,7 @@ static void *CallbackCTimer(void *arg) {
 }
 
 // Appelable uniquement à partir des constructeurs
-void CTimer::Init() {
-	m_bStarted = false;
+void CTimer::Init() {	
 	ui64TpsUsec  = 0;
 	m_hCallBack = CallbackCTimer;
 	m_hObjetAttache = NULL;

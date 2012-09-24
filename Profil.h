@@ -10,12 +10,27 @@
 #endif // _MSC_VER > 1000
 
 #include <Thread.h>
+#include <General.h>
 
 class CProfil : public CThread  
 {
 public:
 	CProfil();
 	virtual ~CProfil();
+
+	virtual void *Thread(void *){return NULL;};
+
+	void SetDebut (time_t tDebutProfil) {tDebut=tDebutProfil;};
+	time_t tGetDebut () {return tDebut;};
+
+	void SetDuree (time_t tDureeProfil) {tDuree=tDureeProfil;};
+	time_t tGetDuree () {return tDuree;};
+
+	void Start();
+private :
+	time_t tDebut;
+	time_t tDuree;
+
 
 };
 

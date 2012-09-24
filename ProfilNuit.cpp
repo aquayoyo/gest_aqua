@@ -17,3 +17,7 @@ CProfilNuit::~CProfilNuit()
 {
 
 }
+
+void *CProfilNuit::Thread(void *pThis) {
+	return NULL;
+}

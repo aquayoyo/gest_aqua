@@ -8,15 +8,18 @@
 #if _MSC_VER > 1000
 #pragma once
 #endif // _MSC_VER > 1000
-
+#include <General.h>
 #include "Profil.h"
 #include "Soleil.h"
+
 
 class CProfilJour : public CProfil
 {
 public:
 	CProfilJour();
 	virtual ~CProfilJour();
+
+	void *Thread(void *pThis);
 
 	CSoleil mSoleil;
 

@@ -24,7 +24,6 @@ public:
 	CTimer();
 	virtual ~CTimer();
 
-	inline const bool IsStarted() const { return m_bStarted; };
 	inline const uint64_t ui64GetDuree() const { return ui64TpsUsec;};
 	
 	void Start(uint64_t ui64_usec=0, void *h_objet_attache=NULL,unsigned int uiFlag=TIME_ONESHOT);
@@ -36,8 +35,6 @@ public:
 	
 	void *Thread(void *pThis);
 private: // Data
-	int iIdPipe [2];
-	bool m_bStarted;
 	uint64_t ui64TpsUsec;
 	pFctCallback m_hCallBack;
 	void * m_hObjetAttache;
