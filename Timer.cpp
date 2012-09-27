@@ -5,7 +5,6 @@
 #ifndef WIN32
 #include <unistd.h>
 #else
-#include <io.h>
 #include <winsock.h>
 #endif
 
@@ -17,16 +16,6 @@ CTimer::CTimer() {
 CTimer::~CTimer() {
 	if (IsStarted())
 		Stop();
-
-	if (iIdPipe[0]>=0) {
-		close (iIdPipe[0]);
-		iIdPipe[0]=-1;
-	}
-
-	if (iIdPipe[1]>=0) {
-		close (iIdPipe[1]);
-		iIdPipe[1]=-1;
-	}
 }
 
 static void *CallbackCTimer(void *arg) {
@@ -39,9 +28,6 @@ void CTimer::Init() {
 	ui64TpsUsec  = 0;
 	m_hCallBack = CallbackCTimer;
 	m_hObjetAttache = NULL;
-	iIdPipe[0]=-1;
-	iIdPipe[1]=-1;
-
 	uiFlagEvent=TIME_ONESHOT;
 }
 
@@ -61,17 +47,15 @@ void *CTimer::Thread (void *pThis) {
 
 	if(!m_hCallBack	|| ui64TpsUsec==0 || !pThis)
 		return NULL;
+	m_bStarted=true;
+
 	printf ("CTimer::Thread 1\n");
-	if (pipe (iIdPipe)!=-1) {
+	if (iIdPipe[0]!=-1) {
 		int n=0;
 		fd_set rfds;
-		
 		FD_ZERO(&rfds);
-		
-		m_bStarted=true;
 		n=iIdPipe[0];
-		n++;
-		
+		n++;		
 		while(!cGetArretThread()) {
 			FD_SET(iIdPipe[0], &rfds);		
 
@@ -100,6 +84,7 @@ void *CTimer::Thread (void *pThis) {
 		}
 	}
 	printf ("CTimer::Thread 3\n");
+	m_bStarted = false;	
 	return NULL;
 }	
 
@@ -116,8 +101,7 @@ void CTimer::Stop() {
 			if (!IsDetach())
 				pthread_join(thread_id,NULL);	
 		}	
-		printf ("CTimer::Stop 4\n");
-		m_bStarted = false;	
+		printf ("CTimer::Stop 4\n");		
 		m_hObjetAttache = NULL;
 	}
 }

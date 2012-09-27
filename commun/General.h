@@ -5,7 +5,7 @@
 #include <errno.h>
 
 #ifdef WIN32
-
+#include <io.h>
 int pipe (int iIdPipe[2]);
 #else
 #include <unistd.h>

@@ -13,7 +13,7 @@ CSequenceurTache::~CSequenceurTache() {
 void *CSequenceurTache::Thread (void *pThis) {
 	int ErrSelect;
 	struct timeval Tv;
-	if (pipe (iIdPipe)!=-1) {
+	if (iIdPipe[0]!=-1) {
 		int n=0;
 		fd_set rfds;
 
@@ -36,10 +36,9 @@ void *CSequenceurTache::Thread (void *pThis) {
 			}else if (ErrSelect == 0) {	// time out
 				if (!cGetArretThread()) {
 					time_t tCourant=time (NULL);
+					struct tm st=(gmtime (&tCourant);
 					if (mProfilJour.tGetDebut ()>=tCourant && mProfilJour.IsStarted())
 						mProfilJour.Start ();
-
-					
 				}
 			}else if(errno != EINTR) {				
 				break;

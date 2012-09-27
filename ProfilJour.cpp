@@ -21,7 +21,7 @@ CProfilJour::~CProfilJour()
 void *CProfilJour::Thread(void *pThis) {
 	int ErrSelect;
 	struct timeval Tv;
-	if (pipe (iIdPipe)!=-1) {
+	if (iIdPipe[0]!=-1) {
 		int n=0;
 		fd_set rfds;
 

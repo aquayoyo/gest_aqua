@@ -46,6 +46,10 @@ CThread::CThread(int detachstate){
 	//TRACE("CThread::CThread\n");
 	Init=0;
 	cAutoDelete=0;
+	
+	iIdPipe[0]=-1;
+	iIdPipe[1]=-1;
+
 	m_bStarted = false;
 	cIsdetachstate=detachstate;
 	/* Initialize the POSIX threads attribute structure. */
@@ -63,26 +67,43 @@ CThread::CThread(int detachstate){
 }
 
 CThread::~CThread() {
+	
+	if (iIdPipe[0]>=0) {
+		close (iIdPipe[0]);
+		iIdPipe[0]=-1;
+	}
+
+	if (iIdPipe[1]>=0) {
+		close (iIdPipe[1]);
+		iIdPipe[1]=-1;
+	}
+
 	pthread_mutex_destroy(&mutex);
 }
 
 int CThread::Create(char cWaitEnd/*=0*/ ) {
 	int err=0;
 	void *ret;
-
+	
 	/* Create a thread to handle the client. */
 	//size_t s =  1*1024*1024;
 	//pthread_attr_setstacksize(&attr,s);
-	if (pthread_create (&thread_id, &attr,(void* (*) (void*))&FctThread, this) == 0) {// Enclenche FctThread sur un autre thread		
-		err=1;
-		pthread_attr_destroy(&attr);
+	if (pipe (iIdPipe)!=-1) {
+		
+		if (pthread_create (&thread_id, &attr,(void* (*) (void*))&FctThread, this) == 0) {// Enclenche FctThread sur un autre thread		
+			err=1;
+			pthread_attr_destroy(&attr);
+		}else {
+			fputs ("failed to create thread\n", stderr);		
+			err=-1;
+		}
+		
+		if (!IsAutoDelete () && !cIsdetachstate && cWaitEnd)
+			pthread_join (thread_id,&ret);
+		
 	}else {
-		fputs ("failed to create thread\n", stderr);		
-		err=-1;
+		iIdPipe[0]=-1;
+		iIdPipe[1]=-1;
 	}
-
-	if (!IsAutoDelete () && !cIsdetachstate && cWaitEnd)
-		pthread_join (thread_id,&ret);
-
 	return err;
 }

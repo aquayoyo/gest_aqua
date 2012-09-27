@@ -22,6 +22,7 @@ public:
 private: // Data
 	
 	list <CTimer *> ListeLanceurTache;
+	//list <CThread *> ListeTache;
 
 	CProfilJour mProfilJour;
 	CProfilNuit mProfilNuit;

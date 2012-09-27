@@ -32,6 +32,8 @@ void *CMainTask::Thread(void *pParam) {
 
 	int cpt=0;
 	printf ("CMainTask::Thread 1\n");
+
+	m_SeqTask.Create ();
 	m_PwmGpio.iInit(0,10*HZ,99);
 	m_PwmGpio.iStart ();
 	while(!cGetArretThread()) {			
@@ -45,8 +47,9 @@ void *CMainTask::Thread(void *pParam) {
 		}else if (ErrSelect == 0) {	// time out			
 			printf ("CMainTask::Thread 1-2\n");
 			cpt++;
-			if (cpt>=30)
+			/*if (cpt>=30)
 				break;
+			*/
 		}else if(errno != EINTR) {		
 			printf ("CMainTask::Thread 1-3\n");
 			break;
@@ -55,5 +58,8 @@ void *CMainTask::Thread(void *pParam) {
 
 	m_PwmGpio.iStop();
 	printf ("CMainTask::Thread 2\n");
+	m_SeqTask.SetArretThread (1);
+	pthread_join (m_SeqTask.GetThread_id(),NULL);
+
 	return NULL;
 }
