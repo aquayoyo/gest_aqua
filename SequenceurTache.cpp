@@ -3,8 +3,18 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "SequenceurTache.h"
+//*******************************************************************
+// fonction static lanceur de tache
+static void *fctStartProfilJour (void *arg) {
+        CSequenceurTache *pSeqTask=arg;
+        if (pSeqTask) {
 
+        }
+        return NULL;
+}
+//*******************************************************************
 CSequenceurTache::CSequenceurTache() {
+    sLastDay=-1;
 }
 
 CSequenceurTache::~CSequenceurTache() {
@@ -36,9 +46,16 @@ void *CSequenceurTache::Thread (void *pThis) {
 			}else if (ErrSelect == 0) {	// time out
 				if (!cGetArretThread()) {
 					time_t tCourant=time (NULL);
-					struct tm *st=gmtime (&tCourant);
-					if (mProfilJour.tGetDebut ()>=tCourant && mProfilJour.IsStarted())
-						mProfilJour.Start ();
+					struct tm *stTmCourant=gmtime (&tCourant);
+					if (stTmCourant) {
+					    if (stTmCourant->tm_yday!=sLastDay) {
+					        sLastDay=stTmCourant->tm_yday;
+					        iInitTimerLanceTache (tCourant);
+					    }
+					    if (mProfilJour.tGetDebut ()>=tCourant && mProfilJour.IsStarted())
+                            mProfilJour.Start ();
+					}
+
 				}
 			}else if(errno != EINTR) {
 				break;
@@ -46,4 +63,10 @@ void *CSequenceurTache::Thread (void *pThis) {
 		}
 	}
 	return NULL;
+}
+
+int CSequenceurTache::iInitTimerLanceTache (time_t tCourant) {
+    int iErr=0;
+
+    return iErr;
 }

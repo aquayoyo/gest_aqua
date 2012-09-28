@@ -13,14 +13,23 @@ using namespace std;
 
 #include <ProfilJour.h>
 #include <ProfilNuit.h>
+typedef struct {
+    char cType;
+    time_t tPeriod;
+    CTimer *pTimerStart;
+    CThread *pTache;
+}STRUCT_TACHE,*PSTRUCT_TACHE;
+
 class CSequenceurTache : public CThread {
 public:
 	CSequenceurTache ();
 	virtual ~CSequenceurTache ();
-	
+
 	void *Thread (void *pThis);
 private: // Data
-	
+	short sLastDay;
+
+	int iInitTimerLanceTache (time_t tCourant)
 	list <CTimer *> ListeLanceurTache;
 	//list <CThread *> ListeTache;
 
