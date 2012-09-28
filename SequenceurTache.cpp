@@ -36,11 +36,11 @@ void *CSequenceurTache::Thread (void *pThis) {
 			}else if (ErrSelect == 0) {	// time out
 				if (!cGetArretThread()) {
 					time_t tCourant=time (NULL);
-					struct tm st=(gmtime (&tCourant);
+					struct tm *st=gmtime (&tCourant);
 					if (mProfilJour.tGetDebut ()>=tCourant && mProfilJour.IsStarted())
 						mProfilJour.Start ();
 				}
-			}else if(errno != EINTR) {				
+			}else if(errno != EINTR) {
 				break;
 			}
 		}

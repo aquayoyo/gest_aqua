@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="AquaGest" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin\Debug\AquaGest" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Debug\" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-DWIN32" />
+					<Add directory="..\..\..\..\gest_aqua" />
+					<Add directory="..\..\..\commun" />
+				</Compiler>
+				<Linker>
+					<Add library="..\..\..\commun\pthread\pthreadVC2.lib" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin\Release\AquaGest" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Release\" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="..\..\..\AquaGest.cpp" />
+		<Unit filename="..\..\..\Lune.cpp" />
+		<Unit filename="..\..\..\Lune.h" />
+		<Unit filename="..\..\..\MainTache.cpp" />
+		<Unit filename="..\..\..\MainTache.h" />
+		<Unit filename="..\..\..\Profil.cpp" />
+		<Unit filename="..\..\..\Profil.h" />
+		<Unit filename="..\..\..\ProfilJour.cpp" />
+		<Unit filename="..\..\..\ProfilJour.h" />
+		<Unit filename="..\..\..\ProfilNuit.cpp" />
+		<Unit filename="..\..\..\ProfilNuit.h" />
+		<Unit filename="..\..\..\PwmGpio.cpp" />
+		<Unit filename="..\..\..\PwmGpio.h" />
+		<Unit filename="..\..\..\SequenceurTache.cpp" />
+		<Unit filename="..\..\..\SequenceurTache.h" />
+		<Unit filename="..\..\..\Soleil.cpp" />
+		<Unit filename="..\..\..\Soleil.h" />
+		<Unit filename="..\..\..\Timer.cpp" />
+		<Unit filename="..\..\..\Timer.h" />
+		<Unit filename="..\..\..\commun\General.cpp" />
+		<Unit filename="..\..\..\commun\General.h" />
+		<Unit filename="..\..\..\commun\Thread.cpp" />
+		<Unit filename="..\..\..\commun\Thread.h" />
+		<Unit filename="..\..\..\gpio-mmap.cpp" />
+		<Unit filename="..\..\..\gpio-mmap.h" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

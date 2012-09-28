@@ -1,0 +1,122 @@
+# depslib dependency file v1.0
+1348771547 source:c:\users\ségolène\documents\yoyo\aquarium\src\gest_aqua\aquagest.cpp
+	<stdio.h>
+	<MainTache.h>
+
+1348771547 c:\users\ségolène\documents\yoyo\aquarium\src\gest_aqua\maintache.h
+	<General.h>
+	<stdio.h>
+	<Thread.h>
+	<PwmGpio.h>
+	<SequenceurTache.h>
+
+1348771547 c:\users\ségolène\documents\yoyo\aquarium\src\gest_aqua\commun\general.h
+	<stdio.h>
+	<errno.h>
+	<io.h>
+	<unistd.h>
+
+1348771547 c:\users\ségolène\documents\yoyo\aquarium\src\gest_aqua\commun\thread.h
+	<General.h>
+	<pthread.h>
+	<semaphore.h>
+
+1348771547 c:\users\ségolène\documents\yoyo\aquarium\src\gest_aqua\pwmgpio.h
+	<General.h>
+	"Timer.h"
+	"gpio-mmap.h"
+
+1348771547 c:\users\ségolène\documents\yoyo\aquarium\src\gest_aqua\timer.h
+	<General.h>
+	<Thread.h>
+	<stdint.h>
+	<windows.h>
+
+1348771547 c:\users\ségolène\documents\yoyo\aquarium\src\gest_aqua\gpio-mmap.h
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	<sys/mman.h>
+	<fcntl.h>
+	<unistd.h>
+	<fcntl.h>
+	<io.h>
+
+1348771547 c:\users\ségolène\documents\yoyo\aquarium\src\gest_aqua\sequenceurtache.h
+	<General.h>
+	<list>
+	<Timer.h>
+	<Thread.h>
+	<ProfilJour.h>
+	<ProfilNuit.h>
+
+1348771547 c:\users\ségolène\documents\yoyo\aquarium\src\gest_aqua\profiljour.h
+	<General.h>
+	"Profil.h"
+	"Soleil.h"
+
+1348771547 c:\users\ségolène\documents\yoyo\aquarium\src\gest_aqua\profil.h
+	<Thread.h>
+	<General.h>
+
+1348771547 c:\users\ségolène\documents\yoyo\aquarium\src\gest_aqua\soleil.h
+	"PwmGpio.h"
+
+1348771547 c:\users\ségolène\documents\yoyo\aquarium\src\gest_aqua\profilnuit.h
+	"Profil.h"
+	<General.h>
+
+1348771547 source:c:\users\ségolène\documents\yoyo\aquarium\src\gest_aqua\lune.cpp
+	"Lune.h"
+
+1348771547 c:\users\ségolène\documents\yoyo\aquarium\src\gest_aqua\lune.h
+
+1348771547 source:c:\users\ségolène\documents\yoyo\aquarium\src\gest_aqua\maintache.cpp
+	"MainTache.h"
+	<stdio.h>
+	<unistd.h>
+	<errno.h>
+	<winsock.h>
+
+1348771547 source:c:\users\ségolène\documents\yoyo\aquarium\src\gest_aqua\profil.cpp
+	"Profil.h"
+
+1348771547 source:c:\users\ségolène\documents\yoyo\aquarium\src\gest_aqua\profiljour.cpp
+	"ProfilJour.h"
+
+1348771547 source:c:\users\ségolène\documents\yoyo\aquarium\src\gest_aqua\profilnuit.cpp
+	"ProfilNuit.h"
+
+1348771547 source:c:\users\ségolène\documents\yoyo\aquarium\src\gest_aqua\pwmgpio.cpp
+	"PwmGpio.h"
+	<stdio.h>
+
+1348810277 source:c:\users\ségolène\documents\yoyo\aquarium\src\gest_aqua\sequenceurtache.cpp
+	"SequenceurTache.h"
+
+1348771547 source:c:\users\ségolène\documents\yoyo\aquarium\src\gest_aqua\soleil.cpp
+	"Soleil.h"
+
+1348771547 source:c:\users\ségolène\documents\yoyo\aquarium\src\gest_aqua\timer.cpp
+	"Timer.h"
+	<stdio.h>
+	<errno.h>
+	<unistd.h>
+	<winsock.h>
+
+1348771547 source:c:\users\ségolène\documents\yoyo\aquarium\src\gest_aqua\commun\general.cpp
+	"General.h"
+
+1348771547 source:c:\users\ségolène\documents\yoyo\aquarium\src\gest_aqua\commun\thread.cpp
+	"Thread.h"
+	<errno.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<sys/types.h>
+	<strings.h>
+	<unistd.h>
+
+1348771547 source:c:\users\ségolène\documents\yoyo\aquarium\src\gest_aqua\gpio-mmap.cpp
+	"gpio-mmap.h"
+
