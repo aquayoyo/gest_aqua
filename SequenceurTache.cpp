@@ -6,7 +6,7 @@
 //*******************************************************************
 // fonction static lanceur de tache
 static void *fctStartProfilJour (void *arg) {
-        CSequenceurTache *pSeqTask=arg;
+        CSequenceurTache *pSeqTask=(CSequenceurTache *)arg;
         if (pSeqTask) {
 
         }
@@ -67,6 +67,40 @@ void *CSequenceurTache::Thread (void *pThis) {
 
 int CSequenceurTache::iInitTimerLanceTache (time_t tCourant) {
     int iErr=0;
+    PSTRUCT_TACHE pTache=NULL;
 
+    // tache profil jour
+    pTache=new STRUCT_TACHE;
+    if (pTache) {
+        memset (pTache,0,sizeof (STRUCT_TACHE));
+        pTache->pTimerStart=new CTimer ();
+        if (pTache->pTimerStart) {
+            pTache->eType=PROFIL_JOUR;
+            pTache->tPeriod=0;
+            pTache->tDebut=0;
+            pTache->pTimerStart->SetCallback (fctStartProfilJour);
+
+        }else
+            iErr=1;
+
+        if (iErr) {
+            if (pTache->pTimerStart) {
+                delete pTache->pTimerStart;
+                pTache->pTimerStart=NULL;
+            }
+
+            if (pTache->pTache) {
+                pTache->pTache->SetArretThread(1);
+                if (!pTache->pTache->IsAutoDelete()) {
+                    if (!pTache->pTache->IsDetach())
+                        pthread_join(pTache->pTache->GetThread_id(),NULL);
+
+                    delete pTache->pTache;
+                    pTache->pTache=NULL;
+                }
+            }
+        }
+
+    }
     return iErr;
 }
