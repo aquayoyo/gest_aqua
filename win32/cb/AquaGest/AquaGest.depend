@@ -134,7 +134,7 @@
 	<PwmGpio.h>
 	<SequenceurTache.h>
 
-1348815779 c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\commun\general.h
+1349101226 c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\commun\general.h
 	<stdio.h>
 	<errno.h>
 	<io.h>
@@ -166,7 +166,7 @@
 	<fcntl.h>
 	<io.h>
 
-1348831780 c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\sequenceurtache.h
+1349101204 c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\sequenceurtache.h
 	<General.h>
 	<list>
 	<Timer.h>
@@ -195,7 +195,7 @@
 
 1348468433 c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\lune.h
 
-1348815779 source:c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\maintache.cpp
+1349099936 source:c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\maintache.cpp
 	"MainTache.h"
 	<stdio.h>
 	<unistd.h>
@@ -215,7 +215,7 @@
 	"PwmGpio.h"
 	<stdio.h>
 
-1348815802 source:c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\sequenceurtache.cpp
+1349073308 source:c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\sequenceurtache.cpp
 	"SequenceurTache.h"
 
 1348468433 source:c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\soleil.cpp
@@ -228,8 +228,11 @@
 	<unistd.h>
 	<winsock.h>
 
-1348468452 source:c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\commun\general.cpp
+1349100534 source:c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\commun\general.cpp
 	"General.h"
+	<sys/types.h>
+	<sys/stat.h>
+	<fcntl.h>
 
 1348815779 source:c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\commun\thread.cpp
 	"Thread.h"
@@ -243,4 +246,11 @@
 
 1348468452 source:c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\gpio-mmap.cpp
 	"gpio-mmap.h"
+
+1349101068 source:c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\basesqlite.cpp
+	<BaseSqlite.h>
+
+1349103096 c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\basesqlite.h
+	<General.h>
+	<Thread.h>
 

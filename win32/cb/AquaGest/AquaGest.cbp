@@ -40,6 +40,7 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="..\..\..\AquaGest.cpp" />
+		<Unit filename="..\..\..\BaseSqlite.cpp" />
 		<Unit filename="..\..\..\Lune.cpp" />
 		<Unit filename="..\..\..\Lune.h" />
 		<Unit filename="..\..\..\MainTache.cpp" />

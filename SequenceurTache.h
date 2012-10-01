@@ -13,16 +13,7 @@ using namespace std;
 
 #include <ProfilJour.h>
 #include <ProfilNuit.h>
-enum TYPE_TACHE{
-    INCONNU=0,
-    PROFIL_JOUR,
-    PROFIL_NUIT,
-    LECTURE_PH,
-    LECTURE_TEMP,
-    VENT,
-    PLUIE,
-    CO2,
-};
+
 
 typedef struct {
     enum  TYPE_TACHE eType;

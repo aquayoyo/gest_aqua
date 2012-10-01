@@ -1,26 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
+	<File name="..\..\..\AquaGest.cpp" open="1" top="0" tabpos="9">
+		<Cursor position="240" topLine="0" />
+	</File>
+	<File name="..\..\..\BaseSqlite.cpp" open="1" top="0" tabpos="11">
+		<Cursor position="27" topLine="0" />
+	</File>
 	<File name="..\..\..\MainTache.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="1088" topLine="26" />
+		<Cursor position="1013" topLine="35" />
 	</File>
 	<File name="..\..\..\MainTache.h" open="0" top="0" tabpos="1">
 		<Cursor position="584" topLine="0" />
 	</File>
 	<File name="..\..\..\Profil.h" open="1" top="0" tabpos="8">
-		<Cursor position="358" topLine="5" />
+		<Cursor position="358" topLine="0" />
 	</File>
 	<File name="..\..\..\ProfilJour.cpp" open="1" top="0" tabpos="6">
-		<Cursor position="648" topLine="23" />
+		<Cursor position="569" topLine="16" />
 	</File>
 	<File name="..\..\..\ProfilJour.h" open="1" top="0" tabpos="7">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="..\..\..\SequenceurTache.cpp" open="1" top="1" tabpos="4">
-		<Cursor position="2057" topLine="57" />
+	<File name="..\..\..\SequenceurTache.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="1660" topLine="57" />
 	</File>
 	<File name="..\..\..\SequenceurTache.h" open="1" top="0" tabpos="3">
-		<Cursor position="842" topLine="20" />
+		<Cursor position="443" topLine="0" />
 	</File>
 	<File name="..\..\..\Timer.cpp" open="1" top="0" tabpos="5">
 		<Cursor position="1167" topLine="50" />
@@ -28,16 +34,16 @@
 	<File name="..\..\..\Timer.h" open="1" top="0" tabpos="1">
 		<Cursor position="571" topLine="0" />
 	</File>
-	<File name="..\..\..\commun\General.cpp" open="1" top="0" tabpos="9">
-		<Cursor position="260" topLine="0" />
+	<File name="..\..\..\commun\General.cpp" open="1" top="0" tabpos="14">
+		<Cursor position="252" topLine="0" />
 	</File>
-	<File name="..\..\..\commun\General.h" open="1" top="0" tabpos="11">
-		<Cursor position="127" topLine="0" />
+	<File name="..\..\..\commun\General.h" open="1" top="0" tabpos="13">
+		<Cursor position="175" topLine="0" />
 	</File>
 	<File name="..\..\..\commun\Thread.cpp" open="1" top="0" tabpos="10">
 		<Cursor position="1903" topLine="65" />
 	</File>
 	<File name="..\..\..\commun\Thread.h" open="0" top="0" tabpos="4">
-		<Cursor position="1123" topLine="24" />
+		<Cursor position="1118" topLine="30" />
 	</File>
 </CodeBlocks_layout_file>

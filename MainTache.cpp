@@ -45,10 +45,11 @@ void *CMainTask::Thread(void *pParam) {
 		n++;
 
         while(!cGetArretThread()) {
+            FD_SET(iIdPipe[0], &rfds);
             Tv.tv_sec	= 1;
             Tv.tv_usec	= 0;
 
-            ErrSelect = select(n,NULL,NULL,NULL,&Tv);
+            ErrSelect = select(n,&rfds,NULL,NULL,&Tv);
             if (ErrSelect > 0) {
                 printf ("CMainTask::Thread 1-1\n");
                 break;
@@ -59,7 +60,7 @@ void *CMainTask::Thread(void *pParam) {
                     break;
                 */
             }else if(errno != EINTR) {
-                printf ("CMainTask::Thread 1-3\n");
+                printf ("CMainTask::Thread 1-3 errno=%d\n",errno);
                 break;
             }
         }
