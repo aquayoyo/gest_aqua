@@ -24,7 +24,7 @@ UTIL_LIB=-lsqlite3 -lpthread
 
 OBJECT = Profil.o Lune.o Soleil.o ProfilNuit.o ProfilJour.o \
 $(TOP)commun/Thread.o $(TOP)commun/General.o \
- MainTache.o Timer.o gpio-mmap.o PwmGpio.o SequenceurTache.o AquaGest.o
+BaseSqlite.o MainTache.o Timer.o gpio-mmap.o PwmGpio.o AquaGest.o
  
 NOMEXE = GestAqua
 DESTDIR= debug/

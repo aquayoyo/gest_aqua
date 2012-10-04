@@ -52,10 +52,7 @@ void *CSequenceurTache::Thread (void *pThis) {
 					        sLastDay=stTmCourant->tm_yday;
 					        iInitTimerLanceTache (tCourant);
 					    }
-					    if (mProfilJour.tGetDebut ()>=tCourant && mProfilJour.IsStarted())
-                            mProfilJour.Start ();
-					}
-
+                    }
 				}
 			}else if(errno != EINTR) {
 				break;
@@ -67,6 +64,7 @@ void *CSequenceurTache::Thread (void *pThis) {
 
 int CSequenceurTache::iInitTimerLanceTache (time_t tCourant) {
     int iErr=0;
+#if 0
     PSTRUCT_TACHE pTache=NULL;
 
     // tache profil jour
@@ -102,5 +100,6 @@ int CSequenceurTache::iInitTimerLanceTache (time_t tCourant) {
         }
 
     }
+#endif
     return iErr;
 }

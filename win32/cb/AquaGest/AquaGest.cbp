@@ -41,6 +41,7 @@
 		</Compiler>
 		<Unit filename="..\..\..\AquaGest.cpp" />
 		<Unit filename="..\..\..\BaseSqlite.cpp" />
+		<Unit filename="..\..\..\BaseSqlite.h" />
 		<Unit filename="..\..\..\Lune.cpp" />
 		<Unit filename="..\..\..\Lune.h" />
 		<Unit filename="..\..\..\MainTache.cpp" />

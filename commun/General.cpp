@@ -1,4 +1,6 @@
 #include "General.h"
+#include <stdio.h>
+#include <time.h>
 
 #ifdef WIN32
 #include <sys/types.h>
@@ -14,3 +16,28 @@ int pipe (int iIdPipe[2]) {
 #else
 int nop=0;
 #endif
+
+
+time_t tGetOffsetFromMidnight (time_t tCourant) {
+    time_t tMidnight=0;
+    time_t tOffsetMidnight=0;
+
+    if (!tCourant)
+        tCourant=time (NULL);
+
+
+    struct tm *stTmCourant=localtime (&tCourant);
+    if (stTmCourant) {
+        struct tm stTmMidnight=*stTmCourant;
+
+        stTmMidnight.tm_hour=0;
+        stTmMidnight.tm_min=0;
+        stTmMidnight.tm_sec=0;
+        stTmMidnight.tm_isdst=-1;
+
+        tMidnight=mktime (&stTmMidnight);
+        tOffsetMidnight=tCourant-tMidnight;
+    }
+
+    return tOffsetMidnight;
+}

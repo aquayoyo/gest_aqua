@@ -13,7 +13,7 @@
 #include "gpio-mmap.h"
 #define HZ	1
 #define KHz 1000 * HZ
-#define NANO_SEC 1000000
+
 static void *CallbackTimerPwmGpio (void *arg);
 
 class CPwmGpio
@@ -23,11 +23,11 @@ public:
 	virtual ~CPwmGpio();
 
 	int GestionPwm();
-	
+
 	int iInit (unsigned char ucNumGpio=0,unsigned int uiFreq=1000, unsigned char ucRapport=50);
 	int iStart ();
 	int iStop ();
-	
+
 private : //data
 	CTimer  m_TimerPwm;
 	unsigned char ucEtat;

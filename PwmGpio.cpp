@@ -30,10 +30,10 @@ CPwmGpio::~CPwmGpio()
 
 int CPwmGpio::iInit (unsigned char ucNumGpio/*=0*/,unsigned int uiFreq/*=1000*/, unsigned char ucRapport/*=50*/) {
 	int iErr=0;
-	
+
 	ucGpio = ucNumGpio;
 	gpio_output( 2,1);
-	
+
 	if (uiFreq>0 && uiFreq<=10 * KHz)
 		uiFrequence=uiFreq;
 	else
@@ -45,31 +45,31 @@ int CPwmGpio::iInit (unsigned char ucNumGpio/*=0*/,unsigned int uiFreq/*=1000*/,
 		ucRapportCyclique=50;
 
 
-	ui64_usec_Period=(NANO_SEC/uiFrequence);
-	
+	ui64_usec_Period=(MICRO_SEC/uiFrequence);
+
 	ui64_usecEtatHaut=ui64_usec_Period*ucRapportCyclique/100;
 	ui64_usecEtatBas=ui64_usec_Period-ui64_usecEtatHaut;
 
 	ucEtat=0;
 	GPIO_WRITE_PIN( 65,ucEtat);
-	
+
 	return iErr;
 }
 
 int CPwmGpio::iStart () {
 	int iRetour=0;
-	
+
 	m_TimerPwm.SetCallback (CallbackTimerPwmGpio);
 	printf ("ui64_usecEtatHaut %lld\n",ui64_usecEtatHaut);
 	m_TimerPwm.Start (ui64_usecEtatHaut,this,TIME_PERIODIC);
-	
+
 	return iRetour;
 }
 int CPwmGpio::iStop () {
 	int iRetour=0;
-	
+
 	m_TimerPwm.Stop ();
-	
+
 	return iRetour;
 }
 int CPwmGpio::GestionPwm() {
