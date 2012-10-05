@@ -45,7 +45,7 @@ short CParametreApplication ::sInitProfil () {
 short CParametreApplication ::sInitPlanification () {
     short sErr=0;
     for (int iNumPlanif=0;iNumPlanif<MAX_PLANIF_PROFIL;iNumPlanif++) {
-        stParamAppli.stPlanifProfil [iNumPlanif].ucNumeroProfil=iNumPlanif+1;
+        stParamAppli.stPlanifProfil [iNumPlanif].ucNumeroPlanif=iNumPlanif+1;
         stParamAppli.stPlanifProfil [iNumPlanif].stPlanif.eType=TACHE_PROFIL;
         switch (iNumPlanif) {
             case 0:

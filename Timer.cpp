@@ -24,7 +24,7 @@ static void *CallbackCTimer(void *arg) {
 }
 
 // Appelable uniquement à partir des constructeurs
-void CTimer::Init() {	
+void CTimer::Init() {
 	ui64TpsUsec  = 0;
 	m_hCallBack = CallbackCTimer;
 	m_hObjetAttache = NULL;
@@ -32,7 +32,7 @@ void CTimer::Init() {
 }
 
 void CTimer::Start(uint64_t ui64_usec, void *h_objet_attache,unsigned int uiFlag) {
-	if (m_bStarted || ui64_usec==0) {		
+	if (m_bStarted || ui64_usec==0) {
 		return;
 	}
 	ui64TpsUsec = ui64_usec;
@@ -55,9 +55,9 @@ void *CTimer::Thread (void *pThis) {
 		fd_set rfds;
 		FD_ZERO(&rfds);
 		n=iIdPipe[0];
-		n++;		
+		n++;
 		while(!cGetArretThread()) {
-			FD_SET(iIdPipe[0], &rfds);		
+			FD_SET(iIdPipe[0], &rfds);
 
 			LockMutex ();
 			Tv.tv_sec	= ui64TpsUsec /1000000;
@@ -73,40 +73,40 @@ void *CTimer::Thread (void *pThis) {
 			}else if (ErrSelect == 0) {	// time out
 				if (!cGetArretThread()) {
 					m_hCallBack(m_hObjetAttache);
-					
-					if (uiFlagEvent&0x1==TIME_ONESHOT) {
+
+					if ((uiFlagEvent&0x1)==TIME_ONESHOT) {
 						break;
 					}
 				}
-			}else if(errno != EINTR) {				
+			}else if(errno != EINTR) {
 				break;
 			}
 		}
 	}
 	printf ("CTimer::Thread 3\n");
-	m_bStarted = false;	
+	m_bStarted = false;
 	return NULL;
-}	
+}
 
 void CTimer::Stop() {
 	if (!IsStarted()  || cGetArretThread()==2)
 		return;
-	
+
 	printf ("CTimer::Stop 1\n");
 	if (iIdPipe[1]>=0) {
 		printf ("CTimer::Stop 2\n");
 		write (iIdPipe[1],"stop",4);
 		printf ("CTimer::Stop 3\n");
-		if (!IsAutoDelete()) {		
+		if (!IsAutoDelete()) {
 			if (!IsDetach())
-				pthread_join(thread_id,NULL);	
-		}	
-		printf ("CTimer::Stop 4\n");		
+				pthread_join(thread_id,NULL);
+		}
+		printf ("CTimer::Stop 4\n");
 		m_hObjetAttache = NULL;
 	}
 }
 
-void CTimer::SetCallback(pFctCallback callback) {	
+void CTimer::SetCallback(pFctCallback callback) {
 	m_hCallBack = callback;
 }
 

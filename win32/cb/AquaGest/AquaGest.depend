@@ -127,7 +127,7 @@
 	<stdio.h>
 	<MainTache.h>
 
-1349359285 c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\maintache.h
+1349444629 c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\maintache.h
 	<General.h>
 	<stdio.h>
 	<map>
@@ -135,11 +135,13 @@
 	<Timer.h>
 	<PwmGpio.h>
 	<BaseSqlite.h>
+	<Profil.h>
 
-1349419128 c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\commun\general.h
+1349435931 c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\commun\general.h
 	<stdio.h>
 	<string.h>
 	<errno.h>
+	<time.h>
 	<windows.h>
 	<io.h>
 	<unistd.h>
@@ -182,9 +184,10 @@
 	"Profil.h"
 	"Soleil.h"
 
-1348757562 c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\profil.h
+1349444547 c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\profil.h
 	<Thread.h>
 	<General.h>
+	<MainTache.h>
 
 1348468433 c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\soleil.h
 	"PwmGpio.h"
@@ -198,14 +201,14 @@
 
 1348468433 c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\lune.h
 
-1349360862 source:c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\maintache.cpp
+1349437829 source:c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\maintache.cpp
 	"MainTache.h"
 	<stdio.h>
 	<unistd.h>
 	<errno.h>
 	<winsock.h>
 
-1348757562 source:c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\profil.cpp
+1349437423 source:c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\profil.cpp
 	"Profil.h"
 
 1348815779 source:c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\profiljour.cpp
@@ -224,14 +227,14 @@
 1348468433 source:c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\soleil.cpp
 	"Soleil.h"
 
-1348815779 source:c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\timer.cpp
+1349430875 source:c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\timer.cpp
 	"Timer.h"
 	<stdio.h>
 	<errno.h>
 	<unistd.h>
 	<winsock.h>
 
-1349356132 source:c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\commun\general.cpp
+1349438385 source:c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\commun\general.cpp
 	"General.h"
 	<stdio.h>
 	<time.h>
@@ -252,7 +255,7 @@
 1348468452 source:c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\gpio-mmap.cpp
 	"gpio-mmap.h"
 
-1349360459 source:c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\basesqlite.cpp
+1349430861 source:c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\basesqlite.cpp
 	<BaseSqlite.h>
 
 1349419195 c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\basesqlite.h

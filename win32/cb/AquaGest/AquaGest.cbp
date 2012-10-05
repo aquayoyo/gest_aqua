@@ -48,14 +48,8 @@
 		<Unit filename="..\..\..\MainTache.h" />
 		<Unit filename="..\..\..\Profil.cpp" />
 		<Unit filename="..\..\..\Profil.h" />
-		<Unit filename="..\..\..\ProfilJour.cpp" />
-		<Unit filename="..\..\..\ProfilJour.h" />
-		<Unit filename="..\..\..\ProfilNuit.cpp" />
-		<Unit filename="..\..\..\ProfilNuit.h" />
 		<Unit filename="..\..\..\PwmGpio.cpp" />
 		<Unit filename="..\..\..\PwmGpio.h" />
-		<Unit filename="..\..\..\SequenceurTache.cpp" />
-		<Unit filename="..\..\..\SequenceurTache.h" />
 		<Unit filename="..\..\..\Soleil.cpp" />
 		<Unit filename="..\..\..\Soleil.h" />
 		<Unit filename="..\..\..\Timer.cpp" />

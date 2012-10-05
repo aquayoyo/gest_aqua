@@ -21,7 +21,8 @@ typedef struct _param_Callback_Start_profil  {
 
 static void *fctStartProfil (void *arg) {
     PARAM_CALLBACK_START_PROFIL *pParam=(PARAM_CALLBACK_START_PROFIL *)arg;
-    if (pParam) {
+    if (pParam && pParam->pMainTask) {
+        pParam->pMainTask->iStartProfil (pParam->ucNumeroPlanif);
         printf ("fctStartProfil %d \n",pParam->ucNumeroPlanif);
     }
     return NULL;
@@ -116,7 +117,6 @@ int CMainTask::iInitPlanification (PARAMETRE_APPLI *pParamAppli/*=NULL*/) {
                         if (pOldTimer) {
                             pOldTimer->Stop ();
                             mLanceurProfil.erase (it);
-                            delete pOldTimer;
                             pOldTimer=NULL;
                         }
                     }
@@ -128,6 +128,7 @@ int CMainTask::iInitPlanification (PARAMETRE_APPLI *pParamAppli/*=NULL*/) {
                         CTimer *LanceTacheprofil=new CTimer ();
                         if (LanceTacheprofil) {
                             LanceTacheprofil->SetCallback (fctStartProfil);
+                            LanceTacheprofil->SetAutoDelete (1);
                             LanceTacheprofil->Start ((pParamAppli->stPlanifProfil [iNumPlanif].stPlanif.tDebut-tOffsetMidnight)*MICRO_SEC,pParam);
                             mLanceurProfil [pParamAppli->stPlanifProfil [iNumPlanif].ucNumeroPlanif]=LanceTacheprofil;
                         }else {
@@ -165,5 +166,28 @@ int CMainTask::iInitPlanification (PARAMETRE_APPLI *pParamAppli/*=NULL*/) {
     }else
         iErr=-1;
 
+    return iErr;
+}
+
+int CMainTask::iStartProfil (unsigned char ucNumeroPlanif/*=0*/) {
+    int iErr=0;
+    if (ucNumeroPlanif) {
+        mLanceurProfil.erase (mLanceurProfil.find (ucNumeroPlanif));
+        printf ("iStartProfil %d mLanceurProfil count = %d",ucNumeroPlanif,mLanceurProfil.size ());
+        PARAMETRE_APPLI *pParamAppli=m_ParametreAppli.GetParamAppli();
+        if (pParamAppli) {
+            for (int iNumPlanif=0;iNumPlanif<MAX_PLANIF_PROFIL;iNumPlanif++) {
+                if (pParamAppli->stPlanifProfil [iNumPlanif].ucNumeroPlanif==ucNumeroPlanif) {
+                    printf ("lance tache profil %d",pParamAppli->stPlanifProfil [iNumPlanif].ucNumeroProfil);
+                    CProfil *pTaskProfil=new CProfil (this);
+                    if (pTaskProfil) {
+
+                    }
+                }
+            }
+        }else
+            iErr=-1;
+    }else
+        iErr=-1;
     return iErr;
 }

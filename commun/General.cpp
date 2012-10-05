@@ -7,10 +7,14 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 int pipe (int iIdPipe[2]) {
+    SECURITY_ATTRIBUTES saAttr;
+
+    saAttr.nLength = sizeof(SECURITY_ATTRIBUTES);
+    saAttr.bInheritHandle = TRUE;
+    saAttr.lpSecurityDescriptor = NULL;
 	iIdPipe[0]=0;
 	iIdPipe[1]=0;
-    /*iIdPipe[0]=open ("c:\\temp.txt",O_RDWR | O_CREAT);
-    iIdPipe[1]=iIdPipe[0];*/
+    iIdPipe[0]=CreatePipe ((void**)&iIdPipe[0],(void**)&iIdPipe[1],&saAttr, 0);
 	return 0;
 }
 #else

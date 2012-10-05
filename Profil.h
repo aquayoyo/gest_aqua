@@ -11,14 +11,16 @@
 
 #include <Thread.h>
 #include <General.h>
+#include <MainTache.h>
 
-class CProfil : public CThread  
+class CMainTask;
+class CProfil : public CThread
 {
 public:
-	CProfil();
+	CProfil(CMainTask *pMain=NULL);
 	virtual ~CProfil();
 
-	virtual void *Thread(void *){return NULL;};
+	virtual void *Thread(void *);
 
 	void SetDebut (time_t tDebutProfil) {tDebut=tDebutProfil;};
 	time_t tGetDebut () {return tDebut;};
@@ -28,6 +30,7 @@ public:
 
 	void Start();
 private :
+    CMainTask *pMainTask;
 	time_t tDebut;
 	time_t tDuree;
 
