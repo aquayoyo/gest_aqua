@@ -148,7 +148,7 @@ int CMainTask::iInitPlanification (PARAMETRE_APPLI *pParamAppli/*=NULL*/) {
                             CTimer *LanceTacheprofil=new CTimer ();
                             if (LanceTacheprofil) {
                                 LanceTacheprofil->SetCallback (fctStartProfil);
-                                LanceTacheprofil->Start (100*MICRO_SEC,pParam);
+                                LanceTacheprofil->Start (100,pParam);
                                 mLanceurProfil [pParamAppli->stPlanifProfil [iNumPlanif].ucNumeroPlanif]=LanceTacheprofil;
                             }else {
                                 delete pParam;

@@ -38,12 +38,12 @@ typedef union
 {
     struct
 	{
-		ULONG bParamProfil  : 1;
-		ULONG bParamPlanifProfil       : 1;
-		ULONG bVide  : 62;
+		uint64_t bParamProfil       : 1;
+		uint64_t bParamPlanifProfil : 1;
+		uint64_t bVide              : 62;
 
 	};
-	ULONGLONG	ul;
+	uint64_t	ul;
 }PARAM_CHANGE;
 
 typedef struct _Param  {

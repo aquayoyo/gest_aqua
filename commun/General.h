@@ -2,13 +2,23 @@
 #define GENERAL_H
 
 #include <stdio.h>
+#include <string.h>
 #include <errno.h>
 
 #ifdef WIN32
-#include <io.h>
-int pipe (int iIdPipe[2]);
+
+    #include <windows.h>
+    #include <io.h>
+
+    int pipe (int iIdPipe[2]);
+
+    #ifndef uint64_t
+        #define uint64_t ULONGLONG
+    #endif // uint64_t
+
 #else
-#include <unistd.h>
+    #include <unistd.h>
+    #include <stdint.h>
 #endif
 
 #define MICRO_SEC  1000000
