@@ -17,7 +17,7 @@ class CMainTask;
 class CProfil : public CThread
 {
 public:
-	CProfil(CMainTask *pMain=NULL);
+	CProfil(unsigned char ucNumProfil/*=0*/,CMainTask *pMain=NULL);
 	virtual ~CProfil();
 
 	virtual void *Thread(void *);
@@ -31,9 +31,14 @@ public:
 	void Start();
 private :
     CMainTask *pMainTask;
+    PARAM_PROFIL stParam;
+
+
+    unsigned char ucNumeroProfil;
 	time_t tDebut;
 	time_t tDuree;
 
+    int iInit ();
 
 };
 

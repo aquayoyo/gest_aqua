@@ -28,6 +28,8 @@ public:
 
     int iStartProfil (unsigned char ucNumeroPlanif=0);
 	//CSequenceurTache m_SeqTask;
+
+	PARAMETRE_APPLI *GetParam() {return m_ParametreAppli.GetParamAppli();};
 private:
     short sLastDay;
     CParametreApplication m_ParametreAppli;

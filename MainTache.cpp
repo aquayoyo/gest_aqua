@@ -76,6 +76,7 @@ void *CMainTask::Thread(void *pParam) {
 					struct tm *stTmCourant=gmtime (&tCourant);
 					if (stTmCourant) {
 					    if (stTmCourant->tm_yday!=sLastDay) {
+					        printf ("changement de jour time=%d\n",tCourant);
 					        sLastDay=stTmCourant->tm_yday;
 					        PARAMETRE_APPLI *pParamAppli=m_ParametreAppli.pstInit();
 					        if (pParamAppli) {
@@ -102,6 +103,7 @@ int CMainTask::iInitPlanification (PARAMETRE_APPLI *pParamAppli/*=NULL*/) {
     int iErr=0;
     if (pParamAppli) {
         time_t tOffsetMidnight=tGetOffsetFromMidnight ();
+        printf ("CMainTask::iInitPlanification toffsetMidnight=%d\n",tOffsetMidnight);
         for (int iNumPlanif=0;iNumPlanif<MAX_PLANIF_PROFIL;iNumPlanif++) {
             if (pParamAppli->stPlanifProfil[iNumPlanif].ucNumeroPlanif) {
 
@@ -120,6 +122,7 @@ int CMainTask::iInitPlanification (PARAMETRE_APPLI *pParamAppli/*=NULL*/) {
                             pOldTimer=NULL;
                         }
                     }
+
                     PARAM_CALLBACK_START_PROFIL *pParam=new PARAM_CALLBACK_START_PROFIL;
                     if (pParam) {
                         pParam->pMainTask=this;
@@ -129,6 +132,7 @@ int CMainTask::iInitPlanification (PARAMETRE_APPLI *pParamAppli/*=NULL*/) {
                         if (LanceTacheprofil) {
                             LanceTacheprofil->SetCallback (fctStartProfil);
                             LanceTacheprofil->SetAutoDelete (1);
+                            printf ("timer lencement %d\n",(pParamAppli->stPlanifProfil [iNumPlanif].stPlanif.tDebut-tOffsetMidnight));
                             LanceTacheprofil->Start ((pParamAppli->stPlanifProfil [iNumPlanif].stPlanif.tDebut-tOffsetMidnight)*MICRO_SEC,pParam);
                             mLanceurProfil [pParamAppli->stPlanifProfil [iNumPlanif].ucNumeroPlanif]=LanceTacheprofil;
                         }else {
@@ -179,8 +183,11 @@ int CMainTask::iStartProfil (unsigned char ucNumeroPlanif/*=0*/) {
             for (int iNumPlanif=0;iNumPlanif<MAX_PLANIF_PROFIL;iNumPlanif++) {
                 if (pParamAppli->stPlanifProfil [iNumPlanif].ucNumeroPlanif==ucNumeroPlanif) {
                     printf ("lance tache profil %d",pParamAppli->stPlanifProfil [iNumPlanif].ucNumeroProfil);
-                    CProfil *pTaskProfil=new CProfil (this);
+                    CProfil *pTaskProfil=new CProfil (pParamAppli->stPlanifProfil [iNumPlanif].ucNumeroProfil,this);
                     if (pTaskProfil) {
+                        pTaskProfil->SetDebut (pParamAppli->stPlanifProfil [iNumPlanif].stPlanif.tDebut);
+                        pTaskProfil->SetDuree(pParamAppli->stPlanifProfil [iNumPlanif].stPlanif.tPeriod);
+                        pTaskProfil->Start();
 
                     }
                 }
