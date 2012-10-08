@@ -11,14 +11,17 @@
 
 #include "PwmGpio.h"
 #include <BaseSqlite.h>
+#include <Thread.h>
 
-class CSoleil
+class CSoleil : public CThread
 {
 public:
 	CSoleil(PARAM_SOLEIL *pParam=NULL);
 	virtual ~CSoleil();
 
 	CPwmGpio GestionCourbeSolaire;
+
+	void *Thread(void *pThis){return NULL;};
 private :
     PARAM_SOLEIL stParam;
 };

@@ -8,11 +8,20 @@
 
 #define MAX_PROFIL 2
 #define MAX_PLANIF_PROFIL 2
+/*
+typedef struct _Courbe {
+    enum TYPE_COURBE eType;
+    union {
+
+    }uCourbe;
+}COURBE;
+
 
 typedef struct _CourbeSolaire {
     unsigned short usNbCourbe;
+    list <COURBE *> lCourbe;
 }CourbeSolaire;
-
+*/
 typedef struct _PlanificationTACHE {
     enum  TYPE_TACHE eType;
     time_t tDebut;

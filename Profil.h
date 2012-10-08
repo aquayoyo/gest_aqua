@@ -12,6 +12,7 @@
 #include <Thread.h>
 #include <General.h>
 #include <MainTache.h>
+#include <Soleil.h>
 
 class CMainTask;
 class CProfil : public CThread
@@ -31,7 +32,9 @@ public:
 	void Start();
 private :
     CMainTask *pMainTask;
+    CSoleil *pSoleil;
     PARAM_PROFIL stParam;
+
 
 
     unsigned char ucNumeroProfil;
@@ -39,6 +42,8 @@ private :
 	time_t tDuree;
 
     int iInit ();
+
+    int iStartProfil ();
 
 };
 
