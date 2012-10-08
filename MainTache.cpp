@@ -132,8 +132,10 @@ int CMainTask::iInitPlanification (PARAMETRE_APPLI *pParamAppli/*=NULL*/) {
                         if (LanceTacheprofil) {
                             LanceTacheprofil->SetCallback (fctStartProfil);
                             LanceTacheprofil->SetAutoDelete (1);
+                            uint64_t test=(uint64_t)(pParamAppli->stPlanifProfil [iNumPlanif].stPlanif.tDebut-tOffsetMidnight)*(uint64_t)MICRO_SEC;
                             printf ("timer lencement %d\n",(pParamAppli->stPlanifProfil [iNumPlanif].stPlanif.tDebut-tOffsetMidnight));
-                            LanceTacheprofil->Start ((pParamAppli->stPlanifProfil [iNumPlanif].stPlanif.tDebut-tOffsetMidnight)*MICRO_SEC,pParam);
+
+                            LanceTacheprofil->Start (test,pParam);
                             mLanceurProfil [pParamAppli->stPlanifProfil [iNumPlanif].ucNumeroPlanif]=LanceTacheprofil;
                         }else {
                             delete pParam;
@@ -177,12 +179,12 @@ int CMainTask::iStartProfil (unsigned char ucNumeroPlanif/*=0*/) {
     int iErr=0;
     if (ucNumeroPlanif) {
         mLanceurProfil.erase (mLanceurProfil.find (ucNumeroPlanif));
-        printf ("iStartProfil %d mLanceurProfil count = %d",ucNumeroPlanif,mLanceurProfil.size ());
+        printf ("iStartProfil %d mLanceurProfil count = %d\n",ucNumeroPlanif,mLanceurProfil.size ());
         PARAMETRE_APPLI *pParamAppli=m_ParametreAppli.GetParamAppli();
         if (pParamAppli) {
             for (int iNumPlanif=0;iNumPlanif<MAX_PLANIF_PROFIL;iNumPlanif++) {
                 if (pParamAppli->stPlanifProfil [iNumPlanif].ucNumeroPlanif==ucNumeroPlanif) {
-                    printf ("lance tache profil %d",pParamAppli->stPlanifProfil [iNumPlanif].ucNumeroProfil);
+                    printf ("lance tache profil %d\n",pParamAppli->stPlanifProfil [iNumPlanif].ucNumeroProfil);
                     CProfil *pTaskProfil=new CProfil (pParamAppli->stPlanifProfil [iNumPlanif].ucNumeroProfil,this);
                     if (pTaskProfil) {
                         pTaskProfil->SetDebut (pParamAppli->stPlanifProfil [iNumPlanif].stPlanif.tDebut);

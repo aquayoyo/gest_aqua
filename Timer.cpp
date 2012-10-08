@@ -35,6 +35,7 @@ void CTimer::Start(uint64_t ui64_usec, void *h_objet_attache,unsigned int uiFlag
 	if (m_bStarted || ui64_usec==0) {
 		return;
 	}
+	printf ("ui64_usec=%llu\n",ui64_usec);
 	ui64TpsUsec = ui64_usec;
 	m_hObjetAttache = h_objet_attache;
 	uiFlagEvent=uiFlag;
@@ -49,7 +50,6 @@ void *CTimer::Thread (void *pThis) {
 		return NULL;
 	m_bStarted=true;
 
-	printf ("CTimer::Thread 1\n");
 	if (iIdPipe[0]!=-1) {
 		int n=0;
 		fd_set rfds;
@@ -60,14 +60,14 @@ void *CTimer::Thread (void *pThis) {
 			FD_SET(iIdPipe[0], &rfds);
 
 			LockMutex ();
-			Tv.tv_sec	= ui64TpsUsec /1000000;
-			Tv.tv_usec	= (ui64TpsUsec %1000000);
+			Tv.tv_sec	= ui64TpsUsec /MICRO_SEC;
+			Tv.tv_usec	= (ui64TpsUsec %MICRO_SEC);
+			printf ("CTimer::Tv.tv_sec=%d %lld\n",Tv.tv_sec,ui64TpsUsec);
 			UnLockMutex ();
 
 			ErrSelect = select(n,&rfds,NULL,NULL,&Tv);
 			if (ErrSelect > 0) {
 				if (FD_ISSET(iIdPipe[0], &rfds)) {
-					printf ("CTimer::Thread 2\n");
 					break;
 				}
 			}else if (ErrSelect == 0) {	// time out
@@ -83,7 +83,7 @@ void *CTimer::Thread (void *pThis) {
 			}
 		}
 	}
-	printf ("CTimer::Thread 3\n");
+	printf ("CTimer::stop thread\n");
 	m_bStarted = false;
 	return NULL;
 }

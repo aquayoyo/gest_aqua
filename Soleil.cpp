@@ -11,7 +11,6 @@
 CSoleil::CSoleil(PARAM_SOLEIL *pParam/*=NULL*/) {
     if (pParam) {
         memcpy (&stParam,pParam,sizeof (PARAM_SOLEIL));
-
     }
 }
 
@@ -19,3 +18,4 @@ CSoleil::~CSoleil()
 {
 
 }
+
