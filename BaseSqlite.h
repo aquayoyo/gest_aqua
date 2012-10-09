@@ -6,22 +6,11 @@
 #include <General.h>
 #include <Thread.h>
 
+#include <list>
+using namespace std;
+
 #define MAX_PROFIL 2
 #define MAX_PLANIF_PROFIL 2
-/*
-typedef struct _Courbe {
-    enum TYPE_COURBE eType;
-    union {
-
-    }uCourbe;
-}COURBE;
-
-
-typedef struct _CourbeSolaire {
-    unsigned short usNbCourbe;
-    list <COURBE *> lCourbe;
-}CourbeSolaire;
-*/
 typedef struct _PlanificationTACHE {
     enum  TYPE_TACHE eType;
     time_t tDebut;
@@ -29,10 +18,44 @@ typedef struct _PlanificationTACHE {
     time_t tRelance;
 }PLANIFICATION_TACHE;
 
+enum TYPE_COURBE {
+    E_COURBE_AFFINE=1,
+    E_COURBE_LOG,
+};
+
+typedef struct _Courbe_Affine {
+    int iA;
+    int iB;
+}COURBE_AFFINE;
+
+typedef struct _Courbe_Log {
+    int iA;
+}COURBE_LOG;
+
+typedef struct _Courbe {
+    enum TYPE_COURBE eType;
+    union {
+        COURBE_AFFINE stCourbeAffine;
+        COURBE_LOG stCourbeLog;
+    }uCourbe;
+}COURBE;
+
+typedef struct _SegmentSolaire {
+    PLANIFICATION_TACHE stParamTemps;
+    unsigned short usIntervalleX; //en seconde
+    COURBE stSegment;
+}SEGMENT_SOLAIRE;
+
+typedef struct _CourbeSolaire {
+    unsigned short usNbSegment;
+    SEGMENT_SOLAIRE lSegment [32];
+}COURBE_SOLAIRE;
+
 typedef struct _Soleil  {
     unsigned char ucValide;
     unsigned char ucAzimut;
     PLANIFICATION_TACHE stEphemeride;
+    COURBE_SOLAIRE stCourbeSolaire;
 }PARAM_SOLEIL;
 
 typedef struct _Profil  {

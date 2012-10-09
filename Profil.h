@@ -35,8 +35,6 @@ private :
     CSoleil *pSoleil;
     PARAM_PROFIL stParam;
 
-
-
     unsigned char ucNumeroProfil;
 	time_t tDebut;
 	time_t tDuree;

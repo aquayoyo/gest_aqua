@@ -15,7 +15,7 @@
 
 static void *FctThread (void *);
 
-class CThread  
+class CThread
 {
 		// fonction //
 /////////////////////////////////////
@@ -23,7 +23,7 @@ public:
 	CThread(int detachstate = PTHREAD_CREATE_JOINABLE);
 	virtual ~CThread();
 
-	unsigned char GetInit () {return Init;};	
+	unsigned char GetInit () {return Init;};
 	pthread_t GetThread_id () {return thread_id;};
 
 	inline const bool IsStarted() const { return m_bStarted; };
@@ -33,6 +33,9 @@ public:
 	void SetArretThread (char DemArret) {
 		pthread_mutex_lock(&mutex);
 		ArretThread=DemArret;
+		if (DemArret && iIdPipe[1]>=0) {
+		    write (iIdPipe[1],"stop",4);
+		}
 		pthread_mutex_unlock(&mutex);
 	};
 
@@ -70,9 +73,9 @@ private:
 	// variable //
 ////////////////////////////////////
 public:
-	
+
 protected:
-	
+
 	pthread_attr_t attr;   /* initial thread attributes              */
     pthread_t thread_id;   /* child thread identifier                */
 private:

@@ -82,8 +82,18 @@ int CProfil::iStartProfil () {
     int iErr=0;
     if (stParam.stParamSoleil.ucValide) {
         if (pSoleil) {
-            //pSoleil->stop ();
-            //pSoleil->
+            pSoleil->SetArretThread (1);
+            if (!pSoleil->IsDetach())
+				pthread_join(thread_id,NULL);
+            if (!pSoleil->IsAutoDelete()) {
+                delete pSoleil;
+                pSoleil=NULL;
+            }
+        }else
+            pSoleil=new CSoleil (&stParam.stParamSoleil);
+
+        if (pSoleil) {
+            pSoleil->Create();
         }
     }
     return iErr;

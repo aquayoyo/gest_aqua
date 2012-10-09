@@ -23,11 +23,7 @@ public:
 	CMainTask();
 	virtual ~CMainTask();
 	void *Thread(void *pParam);
-
-	CPwmGpio m_PwmGpio;
-
     int iStartProfil (unsigned char ucNumeroPlanif=0);
-	//CSequenceurTache m_SeqTask;
 
 	PARAMETRE_APPLI *GetParam() {return m_ParametreAppli.GetParamAppli();};
 private:
