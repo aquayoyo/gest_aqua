@@ -18,10 +18,14 @@ class CSoleil : public CThread
 public:
 	CSoleil(PARAM_SOLEIL *pParam=NULL);
 	virtual ~CSoleil();
-	void *Thread(void *pThis);
+	virtual void *Thread(void *);
 private :
     PARAM_SOLEIL stParam;
     CPwmGpio GestionCourbeSolaire;
+
+    short sIndexlSegment;
+    unsigned short usIntervalleX;
+    int iX;
 
     int iGererCourbe ();
 };

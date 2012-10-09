@@ -26,7 +26,7 @@ int CProfil::iInit (){
         PARAMETRE_APPLI *pParamAppli=pMainTask->GetParam ();
         if (pParamAppli) {
             for (int iNumProfil=0;iNumProfil<MAX_PROFIL;iNumProfil++) {
-                if (pParamAppli->stParamProfil[iNumProfil].ucNumeroProfil==iNumProfil) {
+                if (pParamAppli->stParamProfil[iNumProfil].ucNumeroProfil==ucNumeroProfil) {
                     memcpy (&stParam,&pParamAppli->stParamProfil[iNumProfil],sizeof(PARAM_PROFIL));
                 }
             }
@@ -80,6 +80,7 @@ void *CProfil::Thread(void *pThis) {
 
 int CProfil::iStartProfil () {
     int iErr=0;
+    printf ("CProfil::iStartProfil\n");
     if (stParam.stParamSoleil.ucValide) {
         if (pSoleil) {
             pSoleil->SetArretThread (1);
