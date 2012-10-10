@@ -63,22 +63,22 @@ int CSoleil::iGererCourbe (){
     time_t tOffsetMidnight=tGetOffsetFromMidnight ();
     if (sIndexlSegment==-1) {
         for (int iCpt=0;iCpt<stParam.stCourbeSolaire.usNbSegment;iCpt++) {
-            if (stParam.stCourbeSolaire.lSegment [iCpt].stParamTemps.tDebut>=tOffsetMidnight &&
-                (stParam.stCourbeSolaire.lSegment [iCpt].stParamTemps.tDebut+stParam.stCourbeSolaire.lSegment [iCpt].stParamTemps.tPeriod)<tOffsetMidnight) {
+            if (tOffsetMidnight>=stParam.stCourbeSolaire.lSegment [iCpt].stParamTemps.tDebut &&
+                tOffsetMidnight<(stParam.stCourbeSolaire.lSegment [iCpt].stParamTemps.tDebut+stParam.stCourbeSolaire.lSegment [iCpt].stParamTemps.tPeriod)) {
                     sIndexlSegment=iCpt;
                     usIntervalleX= stParam.stCourbeSolaire.lSegment [sIndexlSegment].usIntervalleX;
-                    iX=0;
+                    dX=0;
                     break;
             }
         }
     }else
-        iX++;
-
-    printf ("iGererCourbe %d\n",iX);
+        dX++;
+    dX=((double)(tOffsetMidnight-stParam.stEphemeride.tDebut))/(double)3600;
+    printf ("iGererCourbe %f\n",dX);
     if (sIndexlSegment>=0) {
         if (stParam.stCourbeSolaire.lSegment [sIndexlSegment].stSegment.eType==E_COURBE_AFFINE){
-            int y=stParam.stCourbeSolaire.lSegment [sIndexlSegment].stSegment.uCourbe.stCourbeAffine.iA*iX+stParam.stCourbeSolaire.lSegment [sIndexlSegment].stSegment.uCourbe.stCourbeAffine.iB;
-            printf ("iGererCourbe y=%d\n",y);
+            double y=stParam.stCourbeSolaire.lSegment [sIndexlSegment].stSegment.uCourbe.stCourbeAffine.dA*dX+stParam.stCourbeSolaire.lSegment [sIndexlSegment].stSegment.uCourbe.stCourbeAffine.dB;
+            printf ("iGererCourbe y=%f\n",y);
 
         }
 

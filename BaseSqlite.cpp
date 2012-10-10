@@ -31,18 +31,27 @@ short CParametreApplication ::sInitProfil () {
             stParamAppli.stParamProfil [iNumProfil].stParamSoleil.ucValide=1;
             stParamAppli.stParamProfil [iNumProfil].stParamSoleil.ucAzimut=100;
             stParamAppli.stParamProfil [iNumProfil].stParamSoleil.stEphemeride.eType=TACHE_SOLEIL;
-            stParamAppli.stParamProfil [iNumProfil].stParamSoleil.stEphemeride.tDebut=21*HEURE;
-            stParamAppli.stParamProfil [iNumProfil].stParamSoleil.stEphemeride.tPeriod=11*HEURE+30*MINUTE;
+            stParamAppli.stParamProfil [iNumProfil].stParamSoleil.stEphemeride.tDebut=15*HEURE;
+            stParamAppli.stParamProfil [iNumProfil].stParamSoleil.stEphemeride.tPeriod=11*HEURE+59*MINUTE;
             stParamAppli.stParamProfil [iNumProfil].stParamSoleil.stEphemeride.tRelance=0;
 
-            stParamAppli.stParamProfil [iNumProfil].stParamSoleil.stCourbeSolaire.usNbSegment=1;
+            stParamAppli.stParamProfil [iNumProfil].stParamSoleil.stCourbeSolaire.usNbSegment=2;
+
             stParamAppli.stParamProfil [iNumProfil].stParamSoleil.stCourbeSolaire.lSegment [0].stParamTemps.tDebut=stParamAppli.stParamProfil [iNumProfil].stParamSoleil.stEphemeride.tDebut;
-            stParamAppli.stParamProfil [iNumProfil].stParamSoleil.stCourbeSolaire.lSegment [0].stParamTemps.tPeriod=2*HEURE;
+            stParamAppli.stParamProfil [iNumProfil].stParamSoleil.stCourbeSolaire.lSegment [0].stParamTemps.tPeriod=1*HEURE;
             stParamAppli.stParamProfil [iNumProfil].stParamSoleil.stCourbeSolaire.lSegment [0].stParamTemps.tRelance=0;
             stParamAppli.stParamProfil [iNumProfil].stParamSoleil.stCourbeSolaire.lSegment [0].usIntervalleX=1;
             stParamAppli.stParamProfil [iNumProfil].stParamSoleil.stCourbeSolaire.lSegment [0].stSegment.eType=E_COURBE_AFFINE;
-            stParamAppli.stParamProfil [iNumProfil].stParamSoleil.stCourbeSolaire.lSegment [0].stSegment.uCourbe.stCourbeAffine.iA=37;
-            stParamAppli.stParamProfil [iNumProfil].stParamSoleil.stCourbeSolaire.lSegment [0].stSegment.uCourbe.stCourbeAffine.iB=12;
+            stParamAppli.stParamProfil [iNumProfil].stParamSoleil.stCourbeSolaire.lSegment [0].stSegment.uCourbe.stCourbeAffine.dA=37.5;
+            stParamAppli.stParamProfil [iNumProfil].stParamSoleil.stCourbeSolaire.lSegment [0].stSegment.uCourbe.stCourbeAffine.dB=12.5;
+
+            stParamAppli.stParamProfil [iNumProfil].stParamSoleil.stCourbeSolaire.lSegment [1].stParamTemps.tDebut=stParamAppli.stParamProfil [iNumProfil].stParamSoleil.stCourbeSolaire.lSegment [0].stParamTemps.tDebut+stParamAppli.stParamProfil [iNumProfil].stParamSoleil.stCourbeSolaire.lSegment [0].stParamTemps.tPeriod;
+            stParamAppli.stParamProfil [iNumProfil].stParamSoleil.stCourbeSolaire.lSegment [1].stParamTemps.tPeriod=2*HEURE;
+            stParamAppli.stParamProfil [iNumProfil].stParamSoleil.stCourbeSolaire.lSegment [1].stParamTemps.tRelance=0;
+            stParamAppli.stParamProfil [iNumProfil].stParamSoleil.stCourbeSolaire.lSegment [1].usIntervalleX=1;
+            stParamAppli.stParamProfil [iNumProfil].stParamSoleil.stCourbeSolaire.lSegment [1].stSegment.eType=E_COURBE_AFFINE;
+            stParamAppli.stParamProfil [iNumProfil].stParamSoleil.stCourbeSolaire.lSegment [1].stSegment.uCourbe.stCourbeAffine.dA=15;
+            stParamAppli.stParamProfil [iNumProfil].stParamSoleil.stCourbeSolaire.lSegment [1].stSegment.uCourbe.stCourbeAffine.dB=35;
 
 
             break;
@@ -61,7 +70,7 @@ short CParametreApplication ::sInitPlanification () {
         switch (iNumPlanif) {
             case 0:
             stParamAppli.stPlanifProfil [iNumPlanif].ucNumeroProfil=1;
-            stParamAppli.stPlanifProfil [iNumPlanif].stPlanif.tDebut=21*HEURE;
+            stParamAppli.stPlanifProfil [iNumPlanif].stPlanif.tDebut=8*HEURE;
             stParamAppli.stPlanifProfil [iNumPlanif].stPlanif.tPeriod=12*HEURE;
             break;
             case 1:

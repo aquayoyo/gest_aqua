@@ -24,12 +24,12 @@ enum TYPE_COURBE {
 };
 
 typedef struct _Courbe_Affine {
-    int iA;
-    int iB;
+    double dA;
+    double dB;
 }COURBE_AFFINE;
 
 typedef struct _Courbe_Log {
-    int iA;
+    double dA;
 }COURBE_LOG;
 
 typedef struct _Courbe {

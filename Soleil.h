@@ -25,7 +25,7 @@ private :
 
     short sIndexlSegment;
     unsigned short usIntervalleX;
-    int iX;
+    double dX;
 
     int iGererCourbe ();
 };
