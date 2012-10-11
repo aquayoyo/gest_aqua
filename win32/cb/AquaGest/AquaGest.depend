@@ -127,7 +127,7 @@
 	<stdio.h>
 	<MainTache.h>
 
-1349849143 c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\maintache.h
+1349965761 c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\maintache.h
 	<General.h>
 	<stdio.h>
 	<map>
@@ -184,11 +184,12 @@
 	"Profil.h"
 	"Soleil.h"
 
-1349849143 c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\profil.h
+1349961751 c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\profil.h
 	<Thread.h>
 	<General.h>
 	<MainTache.h>
 	<Soleil.h>
+	<Timer.h>
 
 1349855651 c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\soleil.h
 	"PwmGpio.h"
@@ -211,7 +212,7 @@
 	<errno.h>
 	<winsock.h>
 
-1349849169 source:c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\profil.cpp
+1349965178 source:c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\profil.cpp
 	"Profil.h"
 
 1348815779 source:c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\profiljour.cpp
@@ -227,7 +228,7 @@
 1349351334 source:c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\sequenceurtache.cpp
 	"SequenceurTache.h"
 
-1349776825 source:c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\soleil.cpp
+1349874504 source:c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\soleil.cpp
 	"Soleil.h"
 
 1349770188 source:c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\timer.cpp
@@ -258,7 +259,7 @@
 1348468452 source:c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\gpio-mmap.cpp
 	"gpio-mmap.h"
 
-1349855668 source:c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\basesqlite.cpp
+1349941041 source:c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\basesqlite.cpp
 	<BaseSqlite.h>
 
 1349855699 c:\documents and settings\adminpc\mes documents\projet c++\sources\gest_aqua\basesqlite.h

@@ -13,6 +13,7 @@
 #include <General.h>
 #include <MainTache.h>
 #include <Soleil.h>
+#include <Timer.h>
 
 class CMainTask;
 class CProfil : public CThread
@@ -34,6 +35,8 @@ private :
     CMainTask *pMainTask;
     CSoleil *pSoleil;
     PARAM_PROFIL stParam;
+
+    CTimer TimerStopProfil;
 
     unsigned char ucNumeroProfil;
 	time_t tDebut;

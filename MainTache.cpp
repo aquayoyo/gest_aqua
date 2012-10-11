@@ -19,11 +19,29 @@ typedef struct _param_Callback_Start_profil  {
     CMainTask *pMainTask;
 }PARAM_CALLBACK_START_PROFIL;
 
+typedef struct _param_Callback_Stop_profil  {
+    unsigned char ucNumeroProfil;
+    CMainTask *pMainTask;
+    CProfil *pProfil;
+}PARAM_CALLBACK_STOP_PROFIL;
+
 static void *fctStartProfil (void *arg) {
     PARAM_CALLBACK_START_PROFIL *pParam=(PARAM_CALLBACK_START_PROFIL *)arg;
     if (pParam && pParam->pMainTask) {
         pParam->pMainTask->iStartProfil (pParam->ucNumeroPlanif);
         printf ("fctStartProfil %d \n",pParam->ucNumeroPlanif);
+        delete pParam;
+        pParam=NULL;
+    }
+    return NULL;
+}
+
+static void *fctStopProfil (void *arg) {
+    PARAM_CALLBACK_STOP_PROFIL *pParam=(PARAM_CALLBACK_STOP_PROFIL *)arg;
+    if (pParam) {
+        pParam->pMainTask->iStopProfil (pParam->ucNumeroProfil,pParam->pProfil);
+        delete pParam;
+        pParam=NULL;
     }
     return NULL;
 }
@@ -37,8 +55,9 @@ CMainTask::CMainTask() : CThread (PTHREAD_CREATE_JOINABLE) {
 	sLastDay=-1;
 }
 
-CMainTask::~CMainTask()
-{
+CMainTask::~CMainTask() {
+
+
 
 }
 
@@ -91,7 +110,36 @@ void *CMainTask::Thread(void *pParam) {
             }
         }
     }
-	//m_PwmGpio.iStop();
+
+	map<unsigned char,CTimer *>::iterator it;
+    for (it=mLanceurProfil.begin() ; it != mLanceurProfil.end(); it++ ) {
+        CTimer *pTimer=it->second;
+        if (pTimer) {
+            pTimer->SetAutoDelete (1);
+            pTimer->Stop ();
+            pTimer=NULL;
+        }
+    }
+    mLanceurProfil.clear ();
+
+
+    for (it=mStopProfil.begin() ; it != mStopProfil.end(); it++ ) {
+        CTimer *pTimer=it->second;
+        if (pTimer) {
+            PARAM_CALLBACK_STOP_PROFIL *pParam=(PARAM_CALLBACK_STOP_PROFIL *)pTimer->GetObjetAttache ();;
+            if (pParam) {
+                pParam->pProfil->SetAutoDelete(1);
+                pParam->pProfil->SetArretThread (1);
+                delete pParam;
+                pParam=NULL;
+            }
+            pTimer->SetAutoDelete (1);
+            pTimer->Stop ();
+            pTimer=NULL;
+        }
+    }
+    mStopProfil.clear ();
+
 	printf ("CMainTask::Thread 2\n");
 /*	m_SeqTask.SetArretThread (1);
 	pthread_join (m_SeqTask.GetThread_id(),NULL);*/
@@ -189,13 +237,46 @@ int CMainTask::iStartProfil (unsigned char ucNumeroPlanif/*=0*/) {
                     if (pTaskProfil) {
                         pTaskProfil->SetDebut (pParamAppli->stPlanifProfil [iNumPlanif].stPlanif.tDebut);
                         pTaskProfil->SetDuree(pParamAppli->stPlanifProfil [iNumPlanif].stPlanif.tPeriod);
-                        pTaskProfil->Start();
 
+
+                        PARAM_CALLBACK_STOP_PROFIL *pParam=new PARAM_CALLBACK_STOP_PROFIL;
+                        if (pParam) {
+                            pParam->pMainTask=this;
+                            pParam->ucNumeroProfil=pParamAppli->stPlanifProfil [iNumPlanif].ucNumeroProfil;
+                            pParam->pProfil=pTaskProfil;
+                            CTimer *StopTacheprofil=new CTimer ();
+                            if (StopTacheprofil) {
+                                StopTacheprofil->SetCallback (fctStopProfil);
+                                StopTacheprofil->Start (pParamAppli->stPlanifProfil [iNumPlanif].stPlanif.tPeriod*MICRO_SEC,pParam);
+                                mStopProfil [pParam->ucNumeroProfil]=StopTacheprofil;
+                                pTaskProfil->Start();
+                            }else {
+                                if (pParam->pProfil) {
+                                    delete pParam->pProfil;
+                                    pParam->pProfil=NULL;
+                                }
+                                delete pParam;
+                                pParam=NULL;
+                                iErr=-1;
+                            }
+                        }else
+                            iErr=-1;
                     }
                 }
             }
         }else
             iErr=-1;
+    }else
+        iErr=-1;
+    return iErr;
+}
+
+int CMainTask::iStopProfil (unsigned char ucNumeroProfil/*=0*/,CProfil *pProfil/*=NULL*/) {
+    int iErr=0;
+    if (ucNumeroProfil && pProfil) {
+        mStopProfil.erase (mStopProfil.find (ucNumeroProfil));
+        pProfil->SetAutoDelete(1);
+        pProfil->SetArretThread (1);
     }else
         iErr=-1;
     return iErr;

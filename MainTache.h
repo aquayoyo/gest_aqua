@@ -24,6 +24,7 @@ public:
 	virtual ~CMainTask();
 	void *Thread(void *pParam);
     int iStartProfil (unsigned char ucNumeroPlanif=0);
+    int iStopProfil (unsigned char ucNumeroProfil=0,CProfil *pProfil=NULL);
 
 	PARAMETRE_APPLI *GetParam() {return m_ParametreAppli.GetParamAppli();};
 private:
@@ -31,7 +32,7 @@ private:
     CParametreApplication m_ParametreAppli;
 
     map <unsigned char,CTimer *> mLanceurProfil;
-	map <unsigned char,CProfil*> mTacheProfil;
+	map <unsigned char,CTimer*> mStopProfil;
 
     int iInitPlanification (PARAMETRE_APPLI *pParamAppli=NULL);
 };

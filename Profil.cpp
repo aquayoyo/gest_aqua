@@ -7,7 +7,6 @@
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
-
 CProfil::CProfil(unsigned char ucNumProfil/*=0*/,CMainTask *pMain/*=NULL*/) : CThread (PTHREAD_CREATE_DETACHED) {
     pMainTask=pMain;
     pSoleil=NULL;
@@ -46,7 +45,6 @@ void CProfil::Start() {
 void *CProfil::Thread(void *pThis) {
 	int ErrSelect;
 	struct timeval Tv;
-
     printf ("debut profil %d start %d\n",ucNumeroProfil,(int)time (NULL));
 	if (iIdPipe[0]!=-1) {
 	    if (iStartProfil ()==0) {
@@ -72,6 +70,15 @@ void *CProfil::Thread(void *pThis) {
                 }else if(errno != EINTR) {
                     break;
                 }
+            }
+	    }
+        if (pSoleil) {
+            pSoleil->SetArretThread (1);
+            if (!pSoleil->IsDetach())
+                pthread_join(thread_id,NULL);
+            if (!pSoleil->IsAutoDelete()) {
+                delete pSoleil;
+                pSoleil=NULL;
             }
         }
 	}
