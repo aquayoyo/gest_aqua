@@ -117,7 +117,7 @@ short CParametreApplication ::sInitPlanification () {
             case 0:
             stParamAppli.stPlanifProfil [iNumPlanif].ucNumeroProfil=1;
             stParamAppli.stPlanifProfil [iNumPlanif].stPlanif.tDebut=8*HEURE;
-            stParamAppli.stPlanifProfil [iNumPlanif].stPlanif.tPeriod=12*HEURE;
+            stParamAppli.stPlanifProfil [iNumPlanif].stPlanif.tPeriod=12*HEURE+0*MINUTE;
             break;
             case 1:
             stParamAppli.stPlanifProfil [iNumPlanif].ucNumeroProfil=2;

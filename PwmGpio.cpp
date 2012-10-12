@@ -18,6 +18,14 @@ static void *CallbackTimerPwmGpio (void *arg) {
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
+CGpio::CGpio (unsigned char ucNumGpio/*=0*/) {
+
+}
+
+
+CGpio::~CGpio () {
+}
+
 
 CPwmGpio::CPwmGpio(unsigned char ucNumGpio/*=0*/,unsigned int uiFreq/*=1000*/, unsigned char ucRapport/*=50*/) {
 	iInit(ucNumGpio,uiFreq,ucRapport);
@@ -32,7 +40,7 @@ int CPwmGpio::iInit (unsigned char ucNumGpio/*=0*/,unsigned int uiFreq/*=1000*/,
 	int iErr=0;
 
 	ucGpio = ucNumGpio;
-	gpio_output( 2,1);
+	gpio_output( G_BANK (ucGpio),G_PIN (ucGpio));
 
 	if (uiFreq>0 && uiFreq<=10 * KHz)
 		uiFrequence=uiFreq;
@@ -51,7 +59,7 @@ int CPwmGpio::iInit (unsigned char ucNumGpio/*=0*/,unsigned int uiFreq/*=1000*/,
 	ui64_usecEtatBas=ui64_usec_Period-ui64_usecEtatHaut;
 
 	ucEtat=0;
-	GPIO_WRITE_PIN( 65,ucEtat);
+	GPIO_WRITE( G_BANK (ucGpio),G_PIN (ucGpio),ucEtat);
 
 	return iErr;
 }
@@ -75,7 +83,7 @@ int CPwmGpio::iStop () {
 int CPwmGpio::GestionPwm() {
 	int iRetour=0;
 	ucEtat=ucEtat?0:1;
-	GPIO_WRITE_PIN( 65,ucEtat);
+	GPIO_WRITE( G_BANK (ucGpio),G_PIN (ucGpio),ucEtat);
 	printf ("ucEtat=%d\n",ucEtat);
 	return iRetour;
 }

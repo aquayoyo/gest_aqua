@@ -246,8 +246,9 @@ int CMainTask::iStartProfil (unsigned char ucNumeroPlanif/*=0*/) {
                             pParam->pProfil=pTaskProfil;
                             CTimer *StopTacheprofil=new CTimer ();
                             if (StopTacheprofil) {
+                                time_t tOffsetMidnight=tGetOffsetFromMidnight ();
                                 StopTacheprofil->SetCallback (fctStopProfil);
-                                StopTacheprofil->Start (pParamAppli->stPlanifProfil [iNumPlanif].stPlanif.tPeriod*MICRO_SEC,pParam);
+                                StopTacheprofil->Start ((pParamAppli->stPlanifProfil [iNumPlanif].stPlanif.tPeriod-(tOffsetMidnight-pParamAppli->stPlanifProfil [iNumPlanif].stPlanif.tDebut))*MICRO_SEC,pParam);
                                 mStopProfil [pParam->ucNumeroProfil]=StopTacheprofil;
                                 pTaskProfil->Start();
                             }else {
