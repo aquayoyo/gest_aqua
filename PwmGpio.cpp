@@ -27,8 +27,8 @@ CGpio::~CGpio () {
 }
 
 
-CPwmGpio::CPwmGpio(unsigned char ucNumGpio/*=0*/,unsigned int uiFreq/*=1000*/, unsigned char ucRapport/*=50*/) {
-	iInit(ucNumGpio,uiFreq,ucRapport);
+CPwmGpio::CPwmGpio(unsigned char ucNumGpio/*=0*/,unsigned int uiFreq/*=1000*/, double dRapport/*=50.0*/) {
+	iInit(ucNumGpio,uiFreq,dRapport);
 }
 
 CPwmGpio::~CPwmGpio()
@@ -36,32 +36,35 @@ CPwmGpio::~CPwmGpio()
 
 }
 
-int CPwmGpio::iInit (unsigned char ucNumGpio/*=0*/,unsigned int uiFreq/*=1000*/, unsigned char ucRapport/*=50*/) {
+int CPwmGpio::iInit (unsigned char ucNumGpio/*=0*/,unsigned int uiFreq/*=1000*/, double dRapport/*=50.0*/) {
 	int iErr=0;
 
 	ucGpio = ucNumGpio;
-	gpio_output( G_BANK (ucGpio),G_PIN (ucGpio));
+	gpio_output( G_BANK(ucGpio),G_PIN(ucGpio));
 
 	if (uiFreq>0 && uiFreq<=10 * KHz)
 		uiFrequence=uiFreq;
 	else
 		uiFrequence=1*KHz;
-
-	if (ucRapport>0 && ucRapport<100)
-		ucRapportCyclique=ucRapport;
-	else
-		ucRapportCyclique=50;
-
-
 	ui64_usec_Period=(MICRO_SEC/uiFrequence);
 
-	ui64_usecEtatHaut=ui64_usec_Period*ucRapportCyclique/100;
-	ui64_usecEtatBas=ui64_usec_Period-ui64_usecEtatHaut;
+    SetRapportCyclique (dRapport);
 
 	ucEtat=0;
-	GPIO_WRITE( G_BANK (ucGpio),G_PIN (ucGpio),ucEtat);
+	GPIO_WRITE( G_BANK(ucGpio),G_PIN(ucGpio),ucEtat);
 
 	return iErr;
+}
+void CPwmGpio::SetRapportCyclique (double dRapport){
+
+    if (dRapport>0 && dRapport<100)
+		dRapportCyclique=dRapport;
+	else
+		dRapportCyclique=50.0;
+
+    ui64_usecEtatHaut=ui64_usec_Period*dRapportCyclique/100;
+	ui64_usecEtatBas=ui64_usec_Period-ui64_usecEtatHaut;
+    m_TimerPwm.SetDuree (ui64_usecEtatHaut);
 }
 
 int CPwmGpio::iStart () {

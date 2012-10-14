@@ -8,12 +8,11 @@
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-CSoleil::CSoleil(PARAM_SOLEIL *pParam/*=NULL*/) {
+CSoleil::CSoleil(PARAM_SOLEIL *pParam/*=NULL*/):GestionCourbeSolaire(GPIO_0,1000,0) {
     sIndexlSegment=-1;
     usIntervalleX=1;
     if (pParam) {
         memcpy (&stParam,pParam,sizeof (PARAM_SOLEIL));
-
     }
 }
 
@@ -78,6 +77,7 @@ int CSoleil::iGererCourbe (){
     if (sIndexlSegment>=0) {
         if (stParam.stCourbeSolaire.lSegment [sIndexlSegment].stSegment.eType==E_COURBE_AFFINE){
             double y=stParam.stCourbeSolaire.lSegment [sIndexlSegment].stSegment.uCourbe.stCourbeAffine.dA*dX+stParam.stCourbeSolaire.lSegment [sIndexlSegment].stSegment.uCourbe.stCourbeAffine.dB;
+            GestionCourbeSolaire.SetRapportCyclique (y);
             printf ("iGererCourbe y=%f\n",y);
 
         }

@@ -42,8 +42,8 @@ CPPFLAGS = $(GDB) $(OPT) $(INC_DIR) -D$(BOARD)
 ifeq ($(BOARD),PC)
 	ifeq ($(CROSS_COMPIL),yes)
 		REP_LIB = $(TOP)sqlite3/.libs/
-		$(CFLAGS)+= -DOLINUXINO
-		$(CPPFLAGS)+= -DOLINUXINO
+		CFLAGS+= -DOLINUXINO
+		CPPFLAGS+= -DOLINUXINO
 	endif
 endif
 appli: $(OBJECT) 

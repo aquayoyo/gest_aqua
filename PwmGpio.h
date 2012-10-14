@@ -14,15 +14,15 @@
 #define HZ	1
 #define KHz 1000 * HZ
 
-#define BANK (x)  x << 4
-#define PIN (x)   x
+#define BANK(x)  (x << 4)
+#define PIN(x)   (x)
 
-#define G_BANK (x) x >> 4
-#define G_PIN (x) x&0xf
+#define G_BANK(x) x >> 4
+#define G_PIN(x) x&0xf
 
 
-#define GPIO_0 BANK (0) + PIN (0)
-#define GPIO_1
+#define GPIO_0 (BANK(0) + PIN(0))
+#define GPIO_1 -1
 #define GPIO_2
 #define GPIO_3
 #define GPIO_4
@@ -73,22 +73,23 @@ private :
 class CPwmGpio
 {
 public:
-	CPwmGpio(unsigned char ucNumGpio=0,unsigned int uiFreq=1000, unsigned char ucRapport=50);
+	CPwmGpio(unsigned char ucNumGpio=0,unsigned int uiFreq=1000, double dRapport=50);
 	virtual ~CPwmGpio();
 
 	int GestionPwm();
 
-	int iInit (unsigned char ucNumGpio=0,unsigned int uiFreq=1000, unsigned char ucRapport=50);
+	int iInit (unsigned char ucNumGpio=0,unsigned int uiFreq=1000, double dRapport=50);
 	int iStart ();
 	int iStop ();
 
+    void SetRapportCyclique (double dRapport);
 private : //data
 	CTimer  m_TimerPwm;
 	unsigned char ucEtat;
 
 	unsigned char ucGpio;
 	unsigned int uiFrequence;
-	unsigned char ucRapportCyclique; // rapport en pourcentage du niveau haut
+	double dRapportCyclique; // rapport en pourcentage du niveau haut
 
 	uint64_t ui64_usecEtatHaut;
 	uint64_t ui64_usecEtatBas;

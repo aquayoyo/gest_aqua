@@ -16,6 +16,7 @@ public:
 	virtual ~CTimer();
 
 	inline const uint64_t ui64GetDuree() const { return ui64TpsUsec;};
+	inline void SetDuree(uint64_t ui64_Duree) {ui64TpsUsec=ui64_Duree;};
 
 	void Start(uint64_t ui64_usec=0, void *h_objet_attache=NULL,unsigned int uiFlag=TIME_ONESHOT);
 	void Stop();
