@@ -29,10 +29,11 @@
 #define GPIO_5
 #define GPIO_6
 #define GPIO_7
-#define GPIO_8
 
+#define GPIO_16 (BANK(0) + PIN(16))
 #define GPIO_17
 
+#define GPIO_20
 #define GPIO_23
 #define GPIO_25
 

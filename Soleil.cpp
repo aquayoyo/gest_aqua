@@ -8,7 +8,7 @@
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-CSoleil::CSoleil(PARAM_SOLEIL *pParam/*=NULL*/):GestionCourbeSolaire(GPIO_0,1000,0) {
+CSoleil::CSoleil(PARAM_SOLEIL *pParam/*=NULL*/):GestionCourbeSolaire(GPIO_16,1000,0) {
     sIndexlSegment=-1;
     usIntervalleX=1;
     if (pParam) {
