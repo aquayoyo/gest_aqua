@@ -1,11 +1,11 @@
 #include "gpio-mmap.h"
 
-int *gpio_mmap = 0;
+static int *gpio_mmap = 0;
 
 int *gpio_map() {
 	int fd;
 	if (gpio_mmap != 0) return NULL;
-#ifdef OLINUXINO	
+#ifdef OLINUXINO
 	fd = open("/dev/mem", O_RDWR);
 	if( fd < 0 ) {
 		perror("Unable to open /dev/mem");
@@ -17,7 +17,7 @@ int *gpio_map() {
 		perror("Unable to mmap file");
 		gpio_mmap = 0;
 	}
-	
+
 	if( -1 == close(fd))
 		perror("Couldn't close file");
 	fd=0;

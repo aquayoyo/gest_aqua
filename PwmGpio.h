@@ -14,11 +14,11 @@
 #define HZ	1
 #define KHz 1000 * HZ
 
-#define BANK(x)  (x << 4)
+#define BANK(x)  (x << 5)
 #define PIN(x)   (x)
 
-#define G_BANK(x) x >> 4
-#define G_PIN(x) x&0xf
+#define G_BANK(x) x >> 5
+#define G_PIN(x) x&0x1f
 
 
 #define GPIO_0 (BANK(0) + PIN(0))

@@ -62,7 +62,6 @@ void *CTimer::Thread (void *pThis) {
 			LockMutex ();
 			Tv.tv_sec	= ui64TpsUsec /MICRO_SEC;
 			Tv.tv_usec	= (ui64TpsUsec %MICRO_SEC);
-			printf ("CTimer::Tv.tv_sec=%d %lld\n",Tv.tv_sec,ui64TpsUsec);
 			UnLockMutex ();
 
 			ErrSelect = select(n,&rfds,NULL,NULL,&Tv);
@@ -73,7 +72,6 @@ void *CTimer::Thread (void *pThis) {
 			}else if (ErrSelect == 0) {	// time out
 				if (!cGetArretThread()) {
 					m_hCallBack(m_hObjetAttache);
-
 					if ((uiFlagEvent&0x1)==TIME_ONESHOT) {
 						break;
 					}

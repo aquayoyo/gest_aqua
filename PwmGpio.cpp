@@ -87,6 +87,5 @@ int CPwmGpio::GestionPwm() {
 	int iRetour=0;
 	ucEtat=ucEtat?0:1;
 	GPIO_WRITE( G_BANK (ucGpio),G_PIN (ucGpio),ucEtat);
-	printf ("ucEtat=%d\n",ucEtat);
 	return iRetour;
 }

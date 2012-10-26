@@ -8,7 +8,7 @@
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-CSoleil::CSoleil(PARAM_SOLEIL *pParam/*=NULL*/):GestionCourbeSolaire(GPIO_16,1000,0) {
+CSoleil::CSoleil(PARAM_SOLEIL *pParam/*=NULL*/):GestionCourbeSolaire(GPIO_16,1000,1) {
     sIndexlSegment=-1;
     usIntervalleX=1;
     if (pParam) {
@@ -31,6 +31,7 @@ void *CSoleil::Thread(void *pThis) {
         fd_set rfds;
         FD_ZERO(&rfds);
 
+        GestionCourbeSolaire.iStart ();
         n=iIdPipe[0];
         n++;
         while(!cGetArretThread()) {
@@ -51,6 +52,8 @@ void *CSoleil::Thread(void *pThis) {
                 break;
             }
         }
+
+        GestionCourbeSolaire.iStop ();
 	}
 	return NULL;
 }
