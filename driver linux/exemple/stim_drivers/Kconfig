@@ -1,0 +1,26 @@
+#
+# Driver special stim
+#
+
+menuconfig MENU_STIM
+	boolean "menu stim"
+	depends on STIM
+		
+config REG_DEBUG
+	tristate "debug reg"
+	depends on MENU_STIM
+	---help---
+	  permet de lire ecrire dans les registes de imx31,capteur video, usb, ethernet
+
+config PIC_18F
+	tristate "install pic"
+	depends on MENU_STIM
+	---help---
+	  drivers comminucation avec le pic pour install
+	  
+
+config STIM_PM
+	tristate "Stim Power Management"
+	depends on MENU_STIM && PM
+	---help---
+	  gere la gestion du la mise en veille et du reveil de la carte
