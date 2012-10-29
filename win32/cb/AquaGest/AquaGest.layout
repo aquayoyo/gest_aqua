@@ -37,8 +37,8 @@
 	<File name="..\..\..\Timer.cpp" open="1" top="0" tabpos="2">
 		<Cursor position="1584" topLine="59" />
 	</File>
-	<File name="..\..\..\Timer.h" open="0" top="0" tabpos="8">
-		<Cursor position="837" topLine="0" />
+	<File name="..\..\..\Timer.h" open="1" top="0" tabpos="11">
+		<Cursor position="416" topLine="13" />
 	</File>
 	<File name="..\..\..\commun\General.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="808" topLine="11" />

@@ -1,6 +1,6 @@
 #include "gpio-mmap.h"
 
-static int *gpio_mmap = 0;
+int *gpio_mmap = 0;
 
 int *gpio_map() {
 	int fd;
