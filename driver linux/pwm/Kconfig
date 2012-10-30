@@ -1,0 +1,20 @@
+#
+# Driver special
+#
+
+menuconfig MENU_AQUA
+	boolean "menu GestAqua"
+	depends on MACH_IMX233_OLINUXINO
+		
+#config REG_DEBUG
+#	tristate "debug reg"
+#	depends on MENU_AQUA
+#	---help---
+#	  permet de lire ecrire dans les registes de imx233
+
+
+config AQUA_PWM
+	tristate "PWM"
+	depends on MENU_AQUA
+	---help---
+	  gere la gestion du pwm de la crte olinuxino
