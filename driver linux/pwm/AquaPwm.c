@@ -1,13 +1,13 @@
 /*
- *  dlgi2c.c
+ *  AquaPwm.c
  *
- *  Copyright (C) 2008 STim
+ *  Copyright (C) 2012 Lionel
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
  * published by the Free Software Foundation.
  *
- *  Driver for dialogue i2c avec la carte PowerCam
+ *  
  *
  *
  *
